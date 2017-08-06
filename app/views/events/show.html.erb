@@ -1,0 +1,43 @@
+<h3><%= @event.name %></h3> 
+<p><%= @event.datetime.strftime("%A, %B %e, %Y at %l:%M %P") %></p>
+<h4><%= @event.location.name %></h4>  
+<p><%= @event.location.street_address %>, <%= @event.location.city %>, <%= @event.location.state %> <%= @event.location.zip %></p>  
+<h4><%= @event.distance %> <%= @event.sport.name if @event.sport %></h4>    
+<p><%= @event.description %></p>  
+<br>
+
+<% if @event.datetime > Time.now %>
+  <h3>RSVP!</h3>
+  <%= form_tag "/registrations", method: :post do %>
+    <input type="hidden" name="event_id" value="@event.id">
+    <select name="status">
+      <% if @event.event_type == "Race" %>
+        <option value="Registered">Racing</option>
+        <option value="Volunteering">Volunteering</option>
+      <% else%>
+        <option value="Attending">Going</option>
+        <option value="Interested">Interested</option>
+      <% end %>
+    </select>
+
+    <input type="submit" value="Sign Up">
+  <% end %>
+  <br>
+  <h3>Who's Going?</h3>
+<% else %>
+  <h3>Average Rating: <%= @event.overall_rating %> Stars</h3>
+  <h3>Who Went?</h3>
+<% end %>
+  <ul>
+    <% @registrants.each do |registrant| %>
+      <li><%= registrant.first_name %> <%= registrant.last_name %> 
+      <% if registrant.registration_status(@event.id) != "Registered" %>(<%= registrant.registration_status(@event.id) %>)<% end %></li>
+    <% end %>
+  </ul>
+<br>
+<a href="/events">Back to All Events</a>
+
+
+  
+
+

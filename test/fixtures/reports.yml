@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  event_id: 1
+  title: MyString
+  body: MyText
+  map_data: MyString
+  elevation_profile: MyString
+  overall_rating: 1
+  swag_rating: 1
+  post_party_rating: 1
+  packet_pickup_rating: 1
+  rate_support_rating: 1
+
+two:
+  user_id: 1
+  event_id: 1
+  title: MyString
+  body: MyText
+  map_data: MyString
+  elevation_profile: MyString
+  overall_rating: 1
+  swag_rating: 1
+  post_party_rating: 1
+  packet_pickup_rating: 1
+  rate_support_rating: 1
