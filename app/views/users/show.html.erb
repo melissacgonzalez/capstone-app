@@ -1,20 +1,69 @@
-<h1><%= @user.first_name %> <%= @user.last_name %></h1>
-<img src="<%= @user.avatar %>" width="250px">
-<p><%= @user.bio %></p>
-<h3>My Upcoming Races</h3>
-<ul><% @races.each do |race|%>
-  <li><a href="/events/<%= race.id %>"><%= race.name %> 
-    <% if @user.registration_status(race.id) != "Registered" %>
-      (<%= @user.registration_status(race.id) %>)
-    <% end %>  </a>
-  </li>
-  <% end %>
-</ul>
+<!-- LISTINGS DETAILS TITLE SECTION -->
+<section class="clearfix paddingAdjustBottom">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="listingTitleArea">
+          <h2><%= @user.first_name %> <%= @user.last_name %></h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<h3>My Race Reports</h3>
-<ul><% @user.reports.each do |report| %>
-  <li><a href="/reports/<%= report.id %>"> <%= report.event.name %></a></li>
-  <% end %>
-</ul>
-
-
+<!-- LISTINGS DETAILS INFO SECTION -->
+<section class="clearfix paddingAdjustTop">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4 col-xs-12">
+        <div class="clearfix">
+          <img src="<%= @user.avatar %>" alt="User Avatar" class="img-responsive">
+        </div>
+      </div>
+      <div class="col-sm-8 col-xs-12">
+        <div class="listDetailsInfo">
+          <div class="detailsInfoBox">
+            <h3>Bio</h3>
+            <p><%= @user.bio %></p>
+          </div>
+          <% if @races != [] %>
+            <div class="detailsInfoBox">
+              <h3>My Upcoming Races:</h3>
+              <ul class="list-inline featuresItems"><% @races.each do |race|%>
+                <li><i class="fa fa-check-circle-o" aria-hidden="true"></i> <a href="/events/<%= race.id %>"><%= race.name %> 
+                  <% if @user.registration_status(race.id) != "Registered" %>
+                    (<%= @user.registration_status(race.id) %>)
+                  <% end %>  </a>
+                </li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+          <% if @user.reports != [] %>
+            <div class="detailsInfoBox">
+              <h3>My Race Reports</h3>
+              <% @user.reports.each do |report| %>
+                <div class="media media-comment">
+                  <div class="media-left">
+                  <img src="<%= @user.avatar %>" class="media-object img-circle" alt="Image User">
+                  </div>
+                  <div class="media-body">
+                    <h4 class="media-heading"><a href="/reports/<%= report.id %>"> <%= report.event.name %></a></h4>
+                    <ul class="list-inline rating">
+                      <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                      <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                      <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                      <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                      <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                    </ul>
+                    <p><%= report.body %></p>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

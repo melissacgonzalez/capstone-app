@@ -1,4 +1,46 @@
-<% @users.each do |user|%>
-  <h1><%= user.first_name %> <%= user.last_name %></h1>
-  <img src="<%= user.avatar %>" width="250px"><br>
-<% end %>
+
+
+<section class="clearfix filterProtfolio">
+  <div class="container">
+    <div class="page-header text-center">
+      <h2>Racebook Members <small>Here are some of our members!</small></h2>
+    </div>
+
+    <% @users.each_slice(4) do |four_users| %>
+      <div class="row isotopeContainer" id="container">
+        <% four_users.each do |user|%>
+          <div class="col-md-3 col-sm-6 col-xs-12 isotopeSelector featuredItem">
+            <article class="">
+              <figure>
+                <img src="<%= user.avatar %>" alt="User Avatar" class="img-responsive">
+                <div class="overlay-background">
+                  <div class="inner"></div>
+                </div>
+                <a href="/users/<%= user.id %>">
+                  <div class="overlay">
+
+                  </div>
+                </a>
+              </figure>
+              <div class="figureBody">
+                <h2><a href="/users/<%= user.id %>"><%= user.first_name %> <%= user.last_name %> </a></h2>
+              </div>
+              <div class="figureFooter">
+                <% if user.events.where("datetime > ?", "now()") != [] %>
+                  <ul class="list-inline ">
+                    <% user.events.where("datetime > ?", "now()").each do |event| %>
+                      <li><a href="/events/<%= event.id%>"><%= event.name.split(/: /)[0] %></a> </li>
+                    <% end %>
+                  </ul>
+                <% else %>
+                  <p>No Upcoming Events</p>
+                <% end %>
+              </div>
+            </article>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+
+  </div>
+</section>

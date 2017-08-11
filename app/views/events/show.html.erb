@@ -1,43 +1,104 @@
-<h3><%= @event.name %></h3> 
-<p><%= @event.datetime.strftime("%A, %B %e, %Y at %l:%M %P") %></p>
-<h4><%= @event.location.name %></h4>  
-<p><%= @event.location.street_address %>, <%= @event.location.city %>, <%= @event.location.state %> <%= @event.location.zip %></p>  
-<h4><%= @event.distance %> <%= @event.sport.name if @event.sport %></h4>    
-<p><%= @event.description %></p>  
-<br>
+<!-- LISTINGS DETAILS TITLE SECTION -->
+<section class="clearfix paddingAdjustBottom">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="listingTitleArea">
+          <h2><%= @event.name.split("- ")[0] %></h2>
+          <p><%= @event.datetime.strftime("%A, %B %e, %Y at %l:%M %P") %></p>
+          <p><span class="placeName"><%= @event.location.name %></span>
+          <%= @event.location.street_address %>, <%= @event.location.city %>, <%= @event.location.state %> <%= @event.location.zip %></p>
 
-<% if @event.datetime > Time.now %>
-  <h3>RSVP!</h3>
-  <%= form_tag "/registrations", method: :post do %>
-    <input type="hidden" name="event_id" value="@event.id">
-    <select name="status">
-      <% if @event.event_type == "Race" %>
-        <option value="Registered">Racing</option>
-        <option value="Volunteering">Volunteering</option>
-      <% else%>
-        <option value="Attending">Going</option>
-        <option value="Interested">Interested</option>
-      <% end %>
-    </select>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
-    <input type="submit" value="Sign Up">
-  <% end %>
-  <br>
-  <h3>Who's Going?</h3>
-<% else %>
-  <h3>Average Rating: <%= @event.overall_rating %> Stars</h3>
-  <h3>Who Went?</h3>
-<% end %>
-  <ul>
-    <% @registrants.each do |registrant| %>
-      <li><%= registrant.first_name %> <%= registrant.last_name %> 
-      <% if registrant.registration_status(@event.id) != "Registered" %>(<%= registrant.registration_status(@event.id) %>)<% end %></li>
-    <% end %>
+<!-- LISTINGS DETAILS IMAGE SECTION -->
+<section class="clearfix paddingAdjustTopBottom">
+  <ul class="list-inline listingImage">
+    <li><img src="<%= @event.main_image %>" alt="Image Listing" class="img-responsive"></li>
+    <li><img src="<%= @event.image2 %>" alt="Image Listing" class="img-responsive"></li>
+    <li><img src="<%= @event.image3 %>" alt="Image Listing" class="img-responsive"></li>
+    <li><img src="<%= @event.image4 %>" alt="Image Listing" class="img-responsive"></li>
   </ul>
-<br>
-<a href="/events">Back to All Events</a>
+</section>
 
-
-  
+<!-- LISTINGS DETAILS INFO SECTION -->
+<section class="clearfix paddingAdjustTop">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-8 col-xs-12">
+        <div class="listDetailsInfo">
+          <div class="detailsInfoBox">
+            <h3></h3>
+            <h3><%= @event.sport ? @event.distance + " " + @event.sport.name : "About This Event" %></h3>    
+            <p><%= @event.description %></p>  
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4 col-xs-12">
+        <div class="listSidebar">
+          <% if current_user %>         
+            <% if @event.datetime > Time.now %>
+              <h3>RSVP</h3>
+                <% if current_user.registrations.find_by(event_id: @event.id) %>
+                  <%= form_tag "/registrations/#{current_user.registrations.find_by(event_id: @event.id).id}", method: :patch do %>
+                    <button type="submit" name="status" value="Registered" class="btn btn-primary btn-block">I'm Racing</button>
+                      <p></p>
+                      <button type="submit" name="status" value="Volunteering" class="btn btn-secondary btn-block">I'm Volunteering</button>
+                      <p></p>
+                    <button type="submit" name="status" value="Cancelled" class="btn btn-secondary btn-block">Not Going</button>
+                  <% end %>
+                <% else %>
+                  <%= form_tag "/registrations", method: :post do %>
+                    <input type="hidden" name="event_id" value="<%= @event.id %>">
+                    
+                    <% if @event.event_type == "Race" %>
+                      <button type="submit" name="status" value="Registered" class="btn btn-primary btn-block">I'm Racing</button>
+                      <p></p>
+                      <button type="submit" name="status" value="Volunteering" class="btn btn-secondary btn-block">I'm Volunteering</button>
+                      <p></p> 
+                    <% else %>
+                      <button type="submit" name="status" value="Attending" class="btn btn-primary btn-block">I'm Attending</button>
+                      <p></p>
+                      <button type="submit" name="status" value="Interested" class="btn btn-secondary btn-block">I'm Interested</button>
+                    <% end %>              
+                  <% end %>
+                <% end %>
+              <br>
+              <h3>Who's Going?</h3>
+            <% else %>
+              <h3>Average Rating: <%= @event.overall_rating %> Stars</h3>
+              <h3>Who Went?</h3>
+            <% end %>
+            <ul class="list-unstyled sidebarList">
+              <% @registrants.each do |registrant| %>
+                <li><a href="/users/<%= registrant.id %>"><%= registrant.first_name %> <%= registrant.last_name %></a>
+                <% if registrant.registration_status(@event.id) != "Registered" %>(<%= registrant.registration_status(@event.id) %>)<% end %></li>
+              <% end %>
+            </ul>
+          <% else %>
+            <h3>Login to RSVP!</h3>
+            <%= form_tag "/login", method: :post do %>
+              <div class="form-group">
+                <i class="fa fa-envelope" aria-hidden="true"></i>
+                <input type="email" class="form-control" id="email" placeholder="Email" name="email">
+              </div>
+              <div class="form-group">
+                <i class="fa fa-lock" aria-hidden="true"></i>
+                <input type="password" class="form-control" id="pwd" placeholder="Password" name="password">
+              </div>
+              <div class="form-group">
+                <input type="submit" class="btn btn-primary btn-block" value="Log In">
+              </div>
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
 
