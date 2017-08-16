@@ -17,22 +17,11 @@
       <div class="collapse navbar-collapse navbar-dash">
         <ul class="nav navbar-nav mr0">
           <li class="active">
-            <a href="dashboard.html"><i class="fa fa-tachometer icon-dash" aria-hidden="true"></i> Dashboard</a>
+            <a href="/reports"><i class="fa fa-tachometer icon-dash" aria-hidden="true"></i> My Reports</a>
           </li>
           <li class="dropdown singleDrop">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fa fa-list-ul icon-dash" aria-hidden="true"></i> Reports <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-            <ul class="dropdown-menu dropdown-menu-left">
-              <li><a href="listings.html">My Reports</a></li>
-              <li><a href="add-listings.html">Add Report</a></li>
-              <li><a href="edit-listings.html">Edit Report</a></li>
-            </ul>
+            <a href="/reports/new"><i class="fa fa-list-ul icon-dash" aria-hidden="true"></i> Add A Report</a>
           </li>
-          <li class="dropdown singleDrop">
-            <a href="dashboard.html#categories" class="scrolling"><i class="fa fa-pie-chart icon-dash" aria-hidden="true"></i> Categories</a>
-          </li>
-          <li><a href="oders.html"><i class="fa fa-cogs icon-dash" aria-hidden="true"></i> Orders</a></li>
-          <li><a href="dashboard.html#message" class="scrolling"><i class="fa fa-envelope icon-dash" aria-hidden="true"></i> Messages</a></li>
-          <li><a href="profile.html"><i class="fa fa-user icon-dash" aria-hidden="true"></i> My Profile </a></li>
         </ul>
         <div class="row adjustRow">
           <div class="pull-right col-xs-12 col-sm-2">
@@ -53,59 +42,60 @@
 
 
 <!-- LISTINGS SECTION -->
-<section class="clearfix bg-dark listyPage">
+<section class="clearfix bg-dark dashboardOrders">
   <div class="container">
     <div class="row">
       <div class="col-xs-12">
-        <div class="dashboardPageTitle">
+        <div class="dashboardPageTitle text-center">
           <h2>Race Reports</h2>
         </div>
-        <div class="table-responsive"  data-pattern="priority-columns">
-          <table class="table listingsTable">
+      </div>
+      <div class="col-xs-12">
+        <div class="table-responsive bgAdd"  data-pattern="priority-columns">
+          <table id="ordersTable" class="table table-small-font table-bordered table-striped" cellspacing="0" width="100%">
             <thead>
-              <tr class="rowItem">
-                <th data-priority="">Reports</th>
-                <th data-priority="1">Featured</th>
-                <th data-priority="2">Rating</th>
-                <th data-priority="3">Posted on</th>
-                <th data-priority="4">Last Edited</th>
-                <th data-priority="5">Update</th>
+              <tr>
+                <th data-priority="">Race Report</th>
+                <th data-priority="1">Rating</th>
+                <th data-priority="2">Posted on</th>
+                <th data-priority="3">Last Edited</th>
+                <th data-priority="4">Status</th>
+                <th data-priority="5">Action</th>
               </tr>
             </thead>
             <tbody>
               <% @reports.each do |report| %>
-                <tr class="rowItem">
-                  <td>
-                    <ul class="list-inline listingsInfo">
-                      <li class="col-xs-5"><a href="/reports/<%= report.id %>"><img src="<%= report.event.main_image %>" alt="Image Listings" class="img-responsive img-round"></a></li>
-                      <li class="col-xs-7">
-                        <h3><a href="/reports/<%= report.id %>"><%= report.title %></a></h3>
-                        <h5><%= report.event.name %> </h5>
-                        <span class="category"><%= report.event.sport %></span>
-                      </li>
-                    </ul>
-                  </td>
-                  <td><i class="fa fa-check primaryColor" aria-hidden="true"></i></td>
+                <tr>
+                  <td><a href="/reports/<%= report.id %>"><%= report.title %></a><br><%= report.registration.event.name %></td>
                   <td>
                     <ul class="list-inline rating">
-                      <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                      <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                      <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                      <li><i class="fa fa-star" aria-hidden="true"></i></li>
-                      <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-                      <li>(9)</li>
+                      <% report.overall_rating.times do %>
+                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                      <% end %>
+                      <% (5 - report.overall_rating).times do %>
+                        <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                      <% end %>
                     </ul>
-
                   </td>
-                  <td><%= report.created_at.strftime("%-m/%e/%Y") %><br><%= report.created_at.strftime("%l:%M %P") %></td>
-                  <td><%= report.updated_at.strftime("%-m/%e/%Y") %><br><%= report.updated_at.strftime("%l:%M %P") %></td>
-                  <td><a href="/reports/<%= report.id %>/edit" class="label label-warning">Edit</a></td>
+                  <td>
+                    <%= report.created_at.strftime("%-m/%e/%Y") %><br><%= report.created_at.strftime("%l:%M %P") %>
+                  </td>
+                  <td>
+                    <%= report.updated_at.strftime("%-m/%e/%Y") %><br><%= report.updated_at.strftime("%l:%M %P") %>
+                  </td>
+                  <td><span class="label label-success">Posted</span></td>
+                  <td>
+                    <div class="btn-group">
+                      <a href="/reports/<%= report.id %>" type="button" class="btn btn-primary">View</a>
+                      <a href="/reports/<%= report.id %>/edit" type="button" class="btn btn-primary">Edit</a>
+                      <a href="" type="button" class="btn btn-primary">Delete</a>
+                    </div>
+                  </td>                  
                 </tr>
               <% end %>
             </tbody>
           </table>
         </div>
-
       </div>
     </div>
   </div>

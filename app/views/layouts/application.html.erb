@@ -16,6 +16,7 @@
   <link href="/plugins/bootstrapthumbnail/bootstrap-thumbnail.css" rel="stylesheet">
   <link href="/plugins/datepicker/datepicker.min.css" rel="stylesheet">
   <link href="/plugins/selectbox/select_option1.css" rel="stylesheet">
+  <link href="/plugins/rwdtable/css/rwd-table.css" rel="stylesheet">
   <link href="/plugins/owl-carousel/owl.carousel.min.css" rel="stylesheet">
   <link href="/plugins/fancybox/jquery.fancybox.pack.css" rel="stylesheet">
   <link href="/plugins/isotope/isotope.min.css" rel="stylesheet">
@@ -51,70 +52,7 @@
 <!--   <div class="page-loader" style="background: url(/img/preloader.gif) center no-repeat #fff;"></div> -->
   <div class="main-wrapper">
     <!-- HEADER -->
-    <header id="pageTop" class="header">
-
-      <!-- TOP INFO BAR -->
-
-      <div class="nav-wrapper navbarWhite">
-
-        <!-- NAVBAR -->
-        <nav id="menuBar" class="navbar navbar-default lightHeader" role="navigation">
-          <div class="container">
-
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header">
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <a class="navbar-brand" href="/">
-                <h1>Racebook</h1>
-              </a>
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse navbar-ex1-collapse">
-              <ul class="nav navbar-nav navbar-right <% if current_user %>mr0<% end %>">
-                <li class="dropdown singleDrop">
-                  <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">All Events <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-                  <ul class="dropdown-menu dropdown-menu-left">
-                    <li><a href="/events">Upcoming Events</a></li>
-                    <li><a href="/events?past=true">Past Events</a></li>
-                  </ul>
-                </li>
-                <li class="dropdown singleDrop">
-                  <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Races <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-                  <ul class="dropdown-menu dropdown-menu-left">
-                    <% Sport.all.each do |sport| %>
-                      <li><a href="/events?type=Race&&sport_id=<%= sport.id%>"><%= sport.name %></a></li>
-                    <% end %>
-                  </ul>
-                </li>
-                <li><a href="/events?type=Workout">Workouts</a></li>
-                <li><a href="/events?type=Clinic">Clinics</a></li>
-
-                <% if current_user %>
-                  <li class=" dropdown singleDrop">
-                    <a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= current_user.first_name %> <%= current_user.last_name %> <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-                    <ul class="dropdown-menu dropdown-menu-left">
-                        <li><a href="/users/<%= current_user.id %>">My Profile</a></li>
-                        <li><a href="/reports">My Reports</a></li>
-                        <li><a href="/users">My Friends</a></li>
-                        <li><a href="/logout">Log Out</a></li>
-                    </ul>
-                  </li>
-                <% end %>
-              </ul>
-            </div>
-            <% if !current_user %>
-              <button type="button" class="btn btn-default navbar-btn" class="button" data-toggle="modal" data-target="#loginModal"> + <span>Log In</span> </button>
-            <% end %>
-          </div>
-        </nav>
-      </div>
-    </header>
+    <%= render "header" %>
 
     
       <% flash.each do |name, message| %>
@@ -129,7 +67,7 @@
     
 
     <!-- FOOTER -->
-    <footer style="background-image: url(/img/background/bg-footer.jpg);">
+    <footer style="background-image: url(/img/background/crit.jpeg);">
       <!-- FOOTER INFO -->
       <div class="clearfix footerInfo">
         <div class="container">

@@ -1,2 +1,13 @@
-<h1>Reports Edit</h1>
-edit.html.erb
+<!-- DASHBOARD ORDERS SECTION -->
+<section class="clearfix bg-dark listingSection">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="dashboardPageTitle text-center">
+          <h2>Edit Race Report</h2>
+        </div>
+          <%= render "form", url: "/reports/#{@report.id}", verb: "patch" %>
+      </div>
+    </div>
+  </div>
+</section>

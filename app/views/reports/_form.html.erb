@@ -1,0 +1,42 @@
+<%= form_tag url, method: verb, class: "listing__form" do %>
+  <div class="dashboardBoxBg mb30">
+    <div class="profileIntro paraMargin">
+      <h3>Report</h3>
+      <div class="row">
+          <div class="form-group col-xs-12">
+          <label for="listingCategory">Race</label>
+          <div class="contactSelect">
+            <select name="event_id" id="guiest_id9" class="select-drop">
+              <% @events.each do |event| %>
+                <option value="<%= event.id %>"><%= event.name %></option>
+              <% end %>
+            </select>
+          </div>
+        </div>
+        <div class="form-group col-sm-8 col-xs-12">
+          <label for="listingTitle">Title</label>
+          <input type="text" class="form-control" id="listingTitle" name="title" value="<%= @report.title %>">
+        </div>
+        <div class="form-group col-sm-4 col-xs-12">
+          <label for="listingCategory">Overall Rating</label>
+          <div class="contactSelect">
+            <select name="overall_rating" class="select-drop">
+              <option value="5">5 Stars </option>
+              <option value="4">4 Stars </option>
+              <option value="3">3 Stars </option>
+              <option value="2">2 Stars </option>
+              <option value="1">1 Star </option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group col-xs-12">
+          <label for="discribeTheListing">Body</label>
+          <textarea class="form-control" rows="10" name="body"><%= @report.body %></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-footer text-center">
+    <button type="submit" class="btn-submit">Submit</button>
+  </div>
+<% end %>

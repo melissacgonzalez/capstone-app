@@ -52,7 +52,7 @@ ActiveRecord::Schema.define(version: 20170805132808) do
 
   create_table "reports", force: :cascade do |t|
     t.integer "user_id"
-    t.integer "event_id"
+    t.integer "registration_id"
     t.string "title"
     t.text "body"
     t.string "map_data"

@@ -1,2 +1,57 @@
-<h1>Reports Show</h1>
-show.html.erb
+<!-- LISTINGS DETAILS TITLE SECTION -->
+<section class="clearfix paddingAdjustBottom">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="listingTitleArea">
+          <h2>Race Report </h2>
+          <div class="media media-comment">
+            <div class="media-left">
+            <img src="<%= @report.user.avatar %>" class="media-object img-circle" alt="Image User">           
+            </div>
+            <div class="media-body">
+              <h3><%= @report.registration.event.name %></h3>
+              <h4><a href="/users/<%= @report.user_id %>"> <%= @report.user.first_name %> <%= @report.user.last_name %></a></h4>
+            </div>
+          </div>
+          <div class="listingReview">
+            <ul class="list-inline rating rating-review">
+              <% @report.overall_rating.times do %>
+                <li><i class="fa fa-star" aria-hidden="true"></i></li>
+              <% end %>
+              <% (5 - @report.overall_rating).times do %>
+                <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+              <% end %>
+            </ul>
+            <span>( <%= @report.overall_rating %> Stars )</span>
+            <% if current_user == @report.user %>
+              <a href="/reports/<%= @report.id %>/edit" class="btn btn-primary">Edit Report</a>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- LISTINGS DETAILS INFO SECTION -->
+<section class="clearfix paddingAdjustTop">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-4 col-xs-12">
+        <div class="clearfix">
+          <img src="<%= @report.registration.event.main_image %>" alt="User Avatar" class="img-responsive">
+        </div>
+      </div>
+      <div class="col-sm-8 col-xs-12">
+        <div class="listDetailsInfo">
+          <div class="detailsInfoBox">
+            <h3><%= @report.title %></h3>
+            <p><%= @report.body %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

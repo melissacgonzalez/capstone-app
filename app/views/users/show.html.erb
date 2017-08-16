@@ -29,7 +29,7 @@
           <% if @races != [] %>
             <div class="detailsInfoBox">
               <h3>My Upcoming Races:</h3>
-              <ul class="list-inline featuresItems"><% @races.each do |race|%>
+              <ul class="list-inline featuresItems"><% @races.where("datetime >= ?", "now()").each do |race|%>
                 <li><i class="fa fa-check-circle-o" aria-hidden="true"></i> <a href="/events/<%= race.id %>"><%= race.name %> 
                   <% if @user.registration_status(race.id) != "Registered" %>
                     (<%= @user.registration_status(race.id) %>)
@@ -48,7 +48,7 @@
                   <img src="<%= @user.avatar %>" class="media-object img-circle" alt="Image User">
                   </div>
                   <div class="media-body">
-                    <h4 class="media-heading"><a href="/reports/<%= report.id %>"> <%= report.event.name %></a></h4>
+                    <h4 class="media-heading"><a href="/reports/<%= report.id %>"> <%= report.registration.event.name %></a></h4>
                     <ul class="list-inline rating">
                       <li><i class="fa fa-star" aria-hidden="true"></i></li>
                       <li><i class="fa fa-star" aria-hidden="true"></i></li>

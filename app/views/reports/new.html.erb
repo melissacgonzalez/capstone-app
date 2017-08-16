@@ -1,2 +1,13 @@
-<h1>Reports New</h1>
-new.html.erb
+<!-- DASHBOARD ORDERS SECTION -->
+<section class="clearfix bg-dark listingSection">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="dashboardPageTitle text-center">
+          <h2>New Race Report</h2>
+        </div>
+          <%= render "form", url: "/reports", verb: "post" %>
+      </div>
+    </div>
+  </div>
+</section>
