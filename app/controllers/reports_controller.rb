@@ -1,6 +1,12 @@
 class ReportsController < ApplicationController
   def index
     @reports = current_user.reports
+    search = params[:search]
+
+    if search
+      @reports = @reports.where("title ILIKE ?", "%#{search}%")
+    end
+
     render "index.html.erb"
   end
 
@@ -11,6 +17,14 @@ class ReportsController < ApplicationController
   end
 
   def create
+    registration = current_user.registrations.where("event_id = ?", "#{params[:event_id]}").first
+    Report.create(
+      user_id: current_user.id,
+      registration_id: registration.id,
+      title: params[:title],
+      body: params[:body],
+      overall_rating: params[:overall_rating]
+      )
     redirect_to "/reports"
   end
 
