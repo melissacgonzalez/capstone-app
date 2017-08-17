@@ -125,7 +125,7 @@ var mapStyles = [{
 ];
 
 // map center
-var center = new google.maps.LatLng(-33.91722, 151.23064);
+var center = new google.maps.LatLng(41.8705425,-87.6722701);
 
 //Map initialize function
 function initialize() {

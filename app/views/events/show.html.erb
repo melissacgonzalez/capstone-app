@@ -39,6 +39,9 @@
         </div>
       </div>
       <div class="col-sm-4 col-xs-12">
+        <div class="clearfix map-sidebar map-right">
+          <div id="map" style="position:relative; margin: 0;padding: 0;height: 538px; max-width: none;"></div>
+        </div>
         <div class="listSidebar">
           <% if current_user %>         
             <% if @event.datetime > Time.now %>

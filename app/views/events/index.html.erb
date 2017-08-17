@@ -1,3 +1,8 @@
+<!-- MAP SECTION -->
+<section class="clearfix p0">
+  <div id="map-canvas"></div>
+</section>
+
 <!-- CATEGORY LIST SECTION -->
 <section class="clerfix">
   <div class="container">
@@ -16,6 +21,16 @@
                 </div>
               </div>  
               <div class="col-sm-7 col-xs-12">
+                <% if event.reports != [] %>
+                  <ul class="list-inline rating">
+                    <% event.overall_rating.to_i.times do %>
+                      <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                    <% end %>
+                    <% (5 - event.overall_rating).to_i.times do %>
+                      <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                    <% end %>
+                  </ul>
+                <% end %>
                 <div class="categoryDetails">
                   <h2><a href="/events/<%= event.id %>" style="color: #222222"><%= event.name %></a> </h2>
                   <p><%= event.datetime.strftime("%A, %B %e, %Y at %l:%M %P") %></p>

@@ -53,7 +53,6 @@
   <div class="main-wrapper">
     <!-- HEADER -->
     <%= render "header" %>
-
     
       <% flash.each do |name, message| %>
         <div class="alert alert-<%= name %> alert-dismissible fade in" role="alert">
@@ -94,7 +93,7 @@
                   <% if current_user%>
                     <li><a href="/users/<%= current_user.id %>">My Profile</a></li>
                     <li><a href="/events?user=true&&type=Race">My Races</a></li>
-                    <li><a href="/reports">My Reports</a></li>
+                    <li><a href="/reports?user=true">My Reports</a></li>
                   <% end %>
                 </ul>
               </div>

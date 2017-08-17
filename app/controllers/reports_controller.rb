@@ -1,7 +1,11 @@
 class ReportsController < ApplicationController
   def index
-    @reports = current_user.reports
+    @reports = Report.all
     search = params[:search]
+
+    if params[:user]
+      @reports = current_user.reports
+    end
 
     if search
       @reports = @reports.where("title ILIKE ?", "%#{search}%")
