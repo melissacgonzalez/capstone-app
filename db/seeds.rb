@@ -33,11 +33,11 @@ Sport.create(name: "Duathlon")
 Sport.create(name: "Aquabike")
 
 
-Location.create(name: "Monroe Harbor", street_address: "400 E Monroe St", city: "Chicago", state: "IL")
-Location.create(name: "Grant Park", street_address: "337 E Randolph St", city: "Chicago", state: "IL", zip: "60601")
-Location.create(name: "North Avenue Chess Pavilion", street_address: "1600 N Lake Shore Dr", city: "Chicago", state: "IL")
-Location.create(name: "Pizzeria Serio", street_address: "1708 W Belmont Ave", city: "Chicago", state: "IL")
-Location.create(name: "Murphy County Park", street_address:"7119 Bay Shore Dr", city: "Egg Harbor", state: "WI", zip: 54209)
+Location.create(name: "Monroe Harbor", street_address: "400 E Monroe St", city: "Chicago", state: "IL", latitude: 41.8803241, longitude: -87.618865)
+Location.create(name: "Grant Park", street_address: "337 E Randolph St", city: "Chicago", state: "IL", zip: "60601", latitude: 41.8827891, longitude: -87.6211116)
+Location.create(name: "North Avenue Chess Pavilion", street_address: "1600 N Lake Shore Dr", city: "Chicago", state: "IL", latitude: 41.911304, longitude: -87.6271757)
+Location.create(name: "Pizzeria Serio", street_address: "1708 W Belmont Ave", city: "Chicago", state: "IL", latitude: 41.9397599, longitude: -87.6736965)
+Location.create(name: "Murphy County Park", street_address:"7119 Bay Shore Dr", city: "Egg Harbor", state: "WI", zip: 54209, latitude: 45.0142679, longitude: -87.3344475)
 
 
 Event.create(name: "2017 Chicago Tri - Sprint", datetime: "2017-08-26 06:00:00 ", description: "800m open water swim with wave start, 12 mile bike ride on Lake Shore Drive, and 3.1 mile run on the lakefront path, ending on Columbus Drive.", event_type: "Race", distance: "Sprint", sport_id: 1, location_id: 1, main_image: "https://i.ytimg.com/vi/eJ2xQDr21f8/maxresdefault.jpg", image2: "http://www.chicagonow.com/blogs/show-me-chicago/assets_c/2010/08/triathlonSwim1-thumb-640xauto-204907.jpg", image3: "http://cdn.triathlete.com/wp-content/uploads/2011/08/259.jpg", image4: "https://www.bizbash.com/content/editorial/storyimg/big/chicago-triathlon.jpg")

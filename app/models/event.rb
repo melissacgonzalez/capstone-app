@@ -11,4 +11,8 @@ class Event < ApplicationRecord
     average_rating = sum_ratings / ratings.length
     return average_rating.round(1)
   end
+
+  def address
+    return "#{self.location.street_address}, #{self.location.city}, #{self.location.state} #{self.location.zip}"
+  end
 end

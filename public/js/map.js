@@ -125,7 +125,7 @@ var mapStyles = [{
 ];
 
 // map center
-var center = new google.maps.LatLng(41.8705425,-87.6722701);
+var center = new google.maps.LatLng(41.8853109,-87.6285003);
 
 //Map initialize function
 function initialize() {
@@ -142,7 +142,7 @@ function initialize() {
     /*
     Path to json file that contains listing data for the marker. Make sure you are calling this file through a server.
      */
-    var url = 'http://themes.iamabdus.com/listty/1.0/js/listings.json';
+    var url = '/api/events';
 
     // define the format of the file retrive from server. here it is in JSON format
     var mapdata = {
@@ -206,7 +206,7 @@ function initialize() {
                 shadow: 0,
                 content:markerContent,
                 title:"Fábrica de Porcelana da Vista Alegre",
-                is_logged_in:value.is_logged_in
+                // is_logged_in:value.is_logged_in
             });
             markers.push(marker);
 

@@ -1,4 +1,9 @@
 json.array! @events.each do |event|
-  json.(event, :id, :datetime, :name, :event_type, :main_image)
-  # need to send across info about location.
+  json.id event.id
+  json.title event.name
+  json.address event.address
+  json.thumbnail event.main_image
+  json.latitude event.location.latitude
+  json.longitude event.location.longitude
+  json.verified false
 end
