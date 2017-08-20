@@ -205,7 +205,7 @@ function initialize() {
                 map: map,
                 shadow: 0,
                 content:markerContent,
-                title:"Fábrica de Porcelana da Vista Alegre",
+                name: value.name,
                 // is_logged_in:value.is_logged_in
             });
             markers.push(marker);

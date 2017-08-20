@@ -6,10 +6,14 @@ class Event < ApplicationRecord
   has_many :users, through: :registrations
 
   def overall_rating
-    ratings = self.reports.map{|report| report.overall_rating}
-    sum_ratings = ratings.reduce{|sum, rating| sum + rating}
-    average_rating = sum_ratings / ratings.length
-    return average_rating.round(1)
+    if self.reports != []
+      ratings = self.reports.map{|report| report.overall_rating}
+      sum_ratings = ratings.reduce{|sum, rating| sum + rating}
+      average_rating = sum_ratings / ratings.length
+      return average_rating.round(1)
+    else
+      return -1
+    end
   end
 
   def address
