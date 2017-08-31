@@ -6,7 +6,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
       events: [],
       eventFilter: "",
       sortAttribute: "datetime",
-      sortAscending: true
+      sortAscending: true,
+      timing: "upcoming"
     },
     mounted: function() {
       $.ajax({
@@ -19,16 +20,34 @@ document.addEventListener("DOMContentLoaded", function(event) {
     },
     methods: {
       isValidEvent: function(event) {
+        var validTiming;
+        if (this.timing === "past") {
+          validTiming = (new Date(event.datetime) < new Date());
+        } else if (this.timing === "upcoming") {
+          validTiming = (new Date(event.datetime) >= new Date());
+        } else {
+          validTiming = true;
+        }
         var validName = event.title.toLowerCase().indexOf(this.eventFilter.toLowerCase()) !== -1;
         var validType = event.event_type.toLowerCase().indexOf(this.eventFilter.toLowerCase()) !== -1;
         var validDistance;
         if (event.distance) {
           validDistance = event.distance.toLowerCase().indexOf(this.eventFilter.toLowerCase()) !== -1;
         }
-        return validName || validType || validDistance;
+        return (validTiming ? validName || validType || validDistance : validTiming);
       },
       toggleSortOrder: function() {
         this.sortAscending = !this.sortAscending;
+      },
+      togglePastEvents: function() {
+        if (this.timing === "past") {
+          this.timing = "upcoming";
+        } else {
+          this.timing = "past";
+        }
+      },
+      allEvents: function() {
+        this.timing = "all";
       }
     },
     computed: {

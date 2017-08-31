@@ -46,8 +46,17 @@
                 <input type="text" v-model="eventFilter" class="form-control" placeholder="What are you looking for?" aria-describedby="basic-addon2" >
                 <a href="/events" class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></a>
               </div>
+              <br>
               <div class="input-group">
-                <button v-on:click="toggleSortOrder()" class="btn btn-secondary">Reverse Sort</button>
+                <a v-on:click="toggleSortOrder()">Reverse Sort</a>
+              </div>
+              <br>
+              <div class="input-group">
+                <a v-on:click="togglePastEvents()">Toggle Past/Upcoming</a>
+              </div>
+              <br>
+              <div class="input-group">
+                <a v-on:click="allEvents()">All Events</a>
               </div>
             </div>
           </div>
