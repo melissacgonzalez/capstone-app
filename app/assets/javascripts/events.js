@@ -5,7 +5,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
     data: {
       events: [],
       eventFilter: "",
-      sortAttribute: ""
+      sortAttribute: "datetime",
+      sortAscending: true
     },
     mounted: function() {
       $.ajax({
@@ -20,13 +21,24 @@ document.addEventListener("DOMContentLoaded", function(event) {
       isValidEvent: function(event) {
         var validName = event.title.toLowerCase().indexOf(this.eventFilter.toLowerCase()) !== -1;
         var validType = event.event_type.toLowerCase().indexOf(this.eventFilter.toLowerCase()) !== -1;
-        return validName || validType;
+        var validDistance;
+        if (event.distance) {
+          validDistance = event.distance.toLowerCase().indexOf(this.eventFilter.toLowerCase()) !== -1;
+        }
+        return validName || validType || validDistance;
+      },
+      toggleSortOrder: function() {
+        this.sortAscending = !this.sortAscending;
       }
-
     },
     computed: {
+      validEvents: function() {
+        return this.events.filter(function(event) {
+          return this.isValidEvent(event);
+        }.bind(this));
+      },
       modifiedEvents: function() {
-        return this.events.sort(function(event1, event2) {
+        return this.validEvents.sort(function(event1, event2) {
           if (this.sortAscending) {
             return event1[this.sortAttribute].toString().localeCompare(event2[this.sortAttribute].toString());
           } else {

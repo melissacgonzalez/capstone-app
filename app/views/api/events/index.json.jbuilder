@@ -9,7 +9,7 @@ json.array! @events.each do |event|
   json.reports event.reports
   json.overall_rating event.overall_rating
   json.datetime event.datetime
-  json.location event.location
+  json.location event.location.name
   json.event_type event.event_type
   json.distance event.distance
 end

@@ -57,6 +57,7 @@ ActiveRecord::Schema.define(version: 20170805132808) do
     t.integer "registration_id"
     t.string "title"
     t.text "body"
+    t.integer "bib_number"
     t.string "map_data"
     t.string "elevation_profile"
     t.integer "overall_rating"

@@ -27,7 +27,8 @@ class ReportsController < ApplicationController
       registration_id: registration.id,
       title: params[:title],
       body: params[:body],
-      overall_rating: params[:overall_rating]
+      overall_rating: params[:overall_rating],
+      bib_number: params[:bib_number]
       )
     redirect_to "/reports"
   end
@@ -48,6 +49,7 @@ class ReportsController < ApplicationController
     @report.title = params[:title] if params[:title]
     @report.body = params[:body] if params[:body]
     @report.overall_rating = params[:overall_rating] if params[:overall_rating]
+    @report.bib_number = params[:bib_number] if params[:bib_number]
     @report.save
     redirect_to "/reports/#{@report.id}"
   end

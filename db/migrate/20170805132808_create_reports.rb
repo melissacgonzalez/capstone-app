@@ -5,6 +5,7 @@ class CreateReports < ActiveRecord::Migration[5.1]
       t.integer :event_id
       t.string :title
       t.text :body
+      t.integer :bib_number
       t.string :map_data
       t.string :elevation_profile
       t.integer :overall_rating

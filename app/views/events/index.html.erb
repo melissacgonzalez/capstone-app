@@ -1,84 +1,84 @@
-<div id="app">
+<div id="app"><!-- Vue App opening Div -->
 
-<!-- MAP SECTION -->
-<section class="clearfix p0">
-  <div id="map-canvas"></div>
-</section>
+  <!-- MAP SECTION -->
+  <section class="clearfix p0">
+    <div id="map-canvas"></div>
+  </section>
 
-<!-- CATEGORY LIST SECTION -->
-<section class="clerfix">
-  <div class="container">
-    <h1>Events</h1>
-    <div class="row">
-      <div class="col-sm-8 col-xs-12">
-        <div class="resultBar barSpaceAdjust">
-          <h2>We found <span>{{ events.length }}</span> Results for you</h2>
-        </div>
-        <div v-for="event in events" v-if="isValidEvent(event)">
-          <div class="listContent">
-            <div class="row">
-              <div class="col-sm-5 col-xs-12">
-                <div class="categoryImage">
-                  <img v-bind:src="event.thumbnail" alt="Image category" class="img-responsive img-rounded">
+  <!-- CATEGORY LIST SECTION -->
+  <section class="clerfix">
+    <div class="container">
+      <h1>Events</h1>
+      <div class="row">
+        <div class="col-sm-8 col-xs-12">
+          <div class="resultBar barSpaceAdjust">
+            <h2>We found <span>{{ validEvents.length }}</span> Results for you</h2>
+          </div>
+          <!-- START V-FOR LOOP -->        
+          <div v-for="event in modifiedEvents" v-if="isValidEvent(event)">
+            <div class="listContent">
+              <div class="row">
+                <div class="col-sm-5 col-xs-12">
+                  <div class="categoryImage">
+                    <img v-bind:src="event.thumbnail" alt="Image category" class="img-responsive img-rounded">
+                  </div>
+                </div>  
+                <div class="col-sm-7 col-xs-12">
+                  <div class="categoryDetails">
+                    <h2><a v-bind:href="'/events/' + event.id" style="color: #222222">
+                      {{ event.title }}
+                    </a></h2>
+                    <p>{{ event.datetime }}</p>
+                    <p><span class="placeName">{{ event.location }}</span><br>
+                    {{ event.address }}</p>
+                  </div> 
                 </div>
-              </div>  
-              <div class="col-sm-7 col-xs-12">
-                <div class="categoryDetails">
-                  <h2><a v-bind:href="'/events/' + event.id" style="color: #222222">
-                    {{ event.title }}
-                  </a></h2>
-                  <p>{{ event.datetime}}</p>
-                  <p><span class="placeName">{{event.location.name}}</span><br>
-                  {{event.location.street_address}}, {{event.location.city}}, {{event.location.state}}</p>
-                </div> 
+              </div>
+            </div> 
+          </div><!-- END OF V-FOR LOOP -->     
+        </div><!-- END OF COL-SM-8 COL-XS-12 -->
+        
+        <div class="col-sm-4 col-xs-12">
+          <div class="sidebarInner sidebarCategory">
+            <div class="panel panel-default">
+              <div class="panel-heading">Find An Upcoming Event</div>
+              <div class="input-group">
+                <input type="text" v-model="eventFilter" class="form-control" placeholder="What are you looking for?" aria-describedby="basic-addon2" >
+                <a href="/events" class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></a>
+              </div>
+              <div class="input-group">
+                <button v-on:click="toggleSortOrder()" class="btn btn-secondary">Reverse Sort</button>
               </div>
             </div>
-          </div> 
-        </div><!-- CLOSING DIV FOR V-FOR LOOP -->
-      </div>
-
-      <div class="col-sm-4 col-xs-12">
-        <div class="sidebarInner sidebarCategory">
-          <div class="panel panel-default">
-            <div class="panel-heading">Find An Upcoming Event</div>
-
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="What are you looking for?" aria-describedby="basic-addon2" v-model="eventFilter">
-              <a href="/events" class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></a>
-            </div>
-
           </div>
-        </div>
-        <div class="sidebarInner sidebarCategory">
-          <div class="panel panel-default">
-            <div class="panel-heading">Filter by Location</div>
-            <div class="panel-body">
-              <ul class="list-unstyle categoryList">
-                <% @locations.each do |location| %>
-                  <li><a href="/events?location_id=<%= location.id %>"><%= location.name %></a></li> 
-                <% end %>
-              </ul>
+          <div class="sidebarInner sidebarCategory">
+            <div class="panel panel-default">
+              <div class="panel-heading">Filter by Location</div>
+              <div class="panel-body">
+                <ul class="list-unstyle categoryList">
+                  <% @locations.each do |location| %>
+                    <li><a href="/events?location_id=<%= location.id %>"><%= location.name %></a></li> 
+                  <% end %>
+                </ul>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="sidebarInner sidebarCategory">
-          <div class="panel panel-default">
-            <div class="panel-heading">Sports</div>
-            <div class="panel-body">
-              <ul class="list-unstyle categoryList">
-                <% @sports.each do |sport| %>
-                  <li><a href="/events?sport_id=<%= sport.id %>"><%= sport.name %></a></li> 
-                <% end %>
-              </ul>
+          <div class="sidebarInner sidebarCategory">
+            <div class="panel panel-default">
+              <div class="panel-heading">Sports</div>
+              <div class="panel-body">
+                <ul class="list-unstyle categoryList">
+                  <% @sports.each do |sport| %>
+                    <li><a href="/events?sport_id=<%= sport.id %>"><%= sport.name %></a></li> 
+                  <% end %>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
-
-
+  </section>
 
 </div><!-- Vue App closing Div -->
 

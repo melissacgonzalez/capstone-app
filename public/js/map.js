@@ -124,8 +124,18 @@ var mapStyles = [{
 }
 ];
 
+
+var geocoder = new google.maps.Geocoder();
 // map center
-var center = new google.maps.LatLng(41.8853109,-87.6285003);
+var center;
+// = new google.maps.LatLng(41.8803241, -87.618865);
+geocoder.geocode({'address': 'Millenium Park, Chicago, IL'}, function(results, status) {
+    if (status === 'OK') {
+        center = results[0].geometry.location;
+    } else {
+        console.log('Geocode was not successful for the following reason: ' + status);
+    }
+});
 
 //Map initialize function
 function initialize() {
@@ -171,7 +181,7 @@ function initialize() {
                 infobox.isOpen = false;
             });
         });
-        $.each(data, function (i, value) {
+        $.each(data, function(i, value) {
             var markerCenter = new google.maps.LatLng(value.latitude, value.longitude);
 
             var verified = '';
