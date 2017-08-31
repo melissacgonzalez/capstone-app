@@ -82,6 +82,20 @@ itu_api_events.each do |itu_api_event|
   else
     new_event_distance = "Olympic"
   end
+  
+  event_id = itu_api_event["event_id"]
+  images = Unirest.get(
+    "https://api.triathlon.org/v1/events/#{event_id}/images?per_page=4", 
+    headers:{ "apikey" => ENV["TRIATHLON_ORG_API_KEY"] }
+    ).body["data"]
+  if images == []
+    images = [
+      {"thumbnail" => "http://app.resrc.it/S=W800/o=90/http://www.triathlon.org/uploads/webgalleries/90168/150917-chicago-u23-web-msj-15.jpg"}, 
+      {"thumbnail" => "http://www.ironman.com/~/media/f0b6857b035c4ec0ba2f038f05664a05/2015%20carousel%20ituabudhabi.jpg"},
+      {"thumbnail" => "http://www.triathlon.org/images/galleries/DEL_64011.JPG"},
+      {"thumbnail" => "http://cdn.triathlete.com/wp-content/uploads/2015/09/CHIITU15-1143.jpg"}]
+  end
+
 
   new_event = Event.create(
     name: itu_api_event["event_title"], 
@@ -91,11 +105,10 @@ itu_api_events.each do |itu_api_event|
     sport_id: new_event_sport_id, 
     distance: new_event_distance, 
     location_id: new_event_location_id, 
-    main_image: "http://app.resrc.it/S=W800/o=90/http://www.triathlon.org/uploads/webgalleries/90168/150917-chicago-u23-web-msj-15.jpg",
-    image2: "http://www.ironman.com/~/media/f0b6857b035c4ec0ba2f038f05664a05/2015%20carousel%20ituabudhabi.jpg",
-    image3: "http://www.triathlon.org/images/galleries/DEL_64011.JPG",
-    image4: "http://cdn.triathlete.com/wp-content/uploads/2015/09/CHIITU15-1143.jpg")
-
+    main_image: images[0]["thumbnail"],
+    image2: images[1]["thumbnail"],
+    image3: images[2]["thumbnail"],
+    image4: images[3]["thumbnail"])
 end
 
 
