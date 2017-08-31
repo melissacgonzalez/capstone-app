@@ -49,6 +49,57 @@ Event.create(name: "CTC Monthly Meeting: Sports Nutrition for Endurance Athletes
 Event.create(name: "2017 Door County Triathlon - Sprint", datetime: "2017-07-15 09:00:00", description: "Swim in the clear waters of Lake Michigan, bike through the rolling hills of Door County, and run through Egg Harbor and surrounding towns.  Start and Finish at Murphy County Park.  All race participants receive a free pig roast lunch and two beer tickets to the post-race party!", event_type: "Race", sport_id: 1, distance: "Sprint", location_id: 5, main_image: "http://photos.capturedoorcounty.com/photos/sVSyztDdbke7gPPqlGf8kA/showcase.jpg", image2: "http://www.doorcountytriathlon.com/wp-content/uploads/2015/01/6358-DC-Tri-2013-768x512.jpg", image3: "http://www.doorcountytriathlon.com/wp-content/uploads/2015/04/7422-DC-Tri-2013-768x512.jpg", image4: "http://www.chicagotriclub.com/resources/Pictures/Slideshow/1%20CTC%20Door%20County%202016.jpg")
 Event.create(name: "2017 Door County Triathlon - Half Ironman", datetime: "2017-07-16 09:00:00", description: "Swim in the clear waters of Lake Michigan, bike through the rolling hills of Door County, and run through Egg Harbor and surrounding towns.  Start and Finish at Murphy County Park.  All race participants receive a free pig roast lunch and two beer tickets to the post-race party!", event_type: "Race", sport_id: 1, distance: "Half Ironman", location_id: 5, main_image: "http://photos.capturedoorcounty.com/photos/sVSyztDdbke7gPPqlGf8kA/showcase.jpg", image2: "http://www.doorcountytriathlon.com/wp-content/uploads/2015/01/6358-DC-Tri-2013-768x512.jpg", image3: "http://www.doorcountytriathlon.com/wp-content/uploads/2015/04/7422-DC-Tri-2013-768x512.jpg", image4: "http://www.chicagotriclub.com/resources/Pictures/Slideshow/1%20CTC%20Door%20County%202016.jpg")
 
+itu_api_events = Unirest.get("https://api.triathlon.org/v1/events?per_page=150&start_date=2015-09-14&end_date=2019-09-14&country_id=293", headers:{ "apikey" => ENV["TRIATHLON_ORG_API_KEY"] }).body["data"]
+
+itu_api_events.each do |itu_api_event|
+  date_time = (itu_api_event["event_date"] + " 06:00:00").to_datetime
+  event_lat = itu_api_event["event_latitude"]
+  event_long = itu_api_event["event_longitude"]
+
+  if Location.where("latitude = ? AND longitude = ?", event_lat, event_long) != []
+    new_event_location_id = Location.where("latitude = ? AND longitude = ?", event_lat, event_long).first.id
+  else
+    new_location = Location.create(city: itu_api_event["event_venue"], latitude: event_lat, longitude: event_long)
+    new_event_location_id = new_location.id
+  end
+
+  event_specifications = itu_api_event["event_specifications"]
+  sport = event_specifications[0]["cat_name"]
+  if Sport.where("name = ?", sport) != []
+    new_event_sport_id = Sport.where("name = ?", sport).first.id
+  else
+    new_sport = Sport.create(name: sport)
+    new_event_sport_id = new_sport.id
+  end
+
+  if event_specifications.count > 1
+    distance = event_specifications[1]["cat_name"]
+    if distance == "Standard"
+      new_event_distance = "Olympic"
+    else
+      new_event_distance = distance
+    end
+  else
+    new_event_distance = "Olympic"
+  end
+
+  new_event = Event.create(
+    name: itu_api_event["event_title"], 
+    datetime: date_time, 
+    description: Faker::Lorem.paragraph(20),
+    event_type: "Race", 
+    sport_id: new_event_sport_id, 
+    distance: new_event_distance, 
+    location_id: new_event_location_id, 
+    main_image: "http://app.resrc.it/S=W800/o=90/http://www.triathlon.org/uploads/webgalleries/90168/150917-chicago-u23-web-msj-15.jpg",
+    image2: "http://www.ironman.com/~/media/f0b6857b035c4ec0ba2f038f05664a05/2015%20carousel%20ituabudhabi.jpg",
+    image3: "http://www.triathlon.org/images/galleries/DEL_64011.JPG",
+    image4: "http://cdn.triathlete.com/wp-content/uploads/2015/09/CHIITU15-1143.jpg")
+
+end
+
+
+
 Registration.create(user_id: 1, event_id: 2, status: "Registered")
 Registration.create(user_id: 1, event_id: 6, status: "Interested", comment: "I will try to make it if I get off work early.")
 Registration.create(user_id: 2, event_id: 1, status: "Registered")
