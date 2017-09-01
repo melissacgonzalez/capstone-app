@@ -290,14 +290,21 @@ document.addEventListener("DOMContentLoaded", function(event) {
           validDistance = event.distance.toLowerCase().indexOf(this.eventFilter.toLowerCase()) !== -1;
         }
         var valid = (validTiming ? validName || validType || validDistance : validTiming);
-        event.marker.setVisible(valid);
+        if (event.marker) {
+          event.marker.setVisible(valid);
+        }
         return valid;
       },
-      fullStars: function(event) {
-        return parseInt(event.overall_rating);
-      },
-      openStars: function(event) {
-        return 5 - parseInt(event.overall_rating);
+      stars: function(event) {
+        var stars = [];
+        var rating = parseInt(event.overall_rating);
+        for (var i = 0; i < rating; i++) {
+          stars.push("fa fa-star");
+        }
+        for (i = 0; i < (5 - rating); i++) {
+          stars.push("fa fa-star-o");
+        }
+        return stars;
       },
       toggleSortOrder: function() {
         this.sortAscending = !this.sortAscending;
