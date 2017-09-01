@@ -24,6 +24,21 @@
                   </div>
                 </div>  
                 <div class="col-sm-7 col-xs-12">
+
+<!-- put stars here -->
+<!--                   <div v-if="event.reports !== []">
+                    <ul class="list-inline rating">
+                      <span v-for="star in fullStars(event)">
+                        <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                      </span>
+                      <span v-for="open_star in openStars(event)">
+                        <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                      </span>
+                    </ul>
+                  </div> -->
+
+
+
                   <div class="categoryDetails">
                     <h2><a v-bind:href="'/events/' + event.id" style="color: #222222">
                       {{ event.title }}
