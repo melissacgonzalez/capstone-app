@@ -8,6 +8,23 @@
           <p><%= @event.datetime.strftime("%A, %B %e, %Y at %l:%M %P") %></p>
           <p><span class="placeName"><%= @event.location.name %></span>
           <%= @event.location.street_address %>, <%= @event.location.city %>, <%= @event.location.state %> <%= @event.location.zip %></p>
+          
+          <div class="listingReview">
+            <ul class="list-inline rating">
+              <% @event.overall_rating.to_i.times do %>
+                <li><i class="fa fa-star" aria-hidden="true"></i></li>
+              <% end %>
+              <% (5 - @event.overall_rating.to_i).times do %>
+                <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+              <% end %>
+            </ul>
+            <span>( <%= @reports.count %> Reports )</span>
+            <% if current_user.report_for(@event) %>
+              <a href="/reports/<%= current_user.report_for(@event).id %>/edit" class="btn btn-primary">Edit Report</a>
+            <% elsif current_user.registration_for(@event) %>
+              <a href="/reports/new?reg_id=<%= @event.registrations.find_by(user_id: current_user.id).id %>" class="btn btn-primary">Write a Report</a>
+            <% end %>
+          </div>
 
         </div>
       </div>
@@ -34,7 +51,42 @@
           <div class="detailsInfoBox">
             <h3></h3>
             <h3><%= @event.sport ? @event.distance + " " + @event.sport.name : "About This Event" %></h3>    
-            <p><%= @event.description %></p>  
+            <p><%= @event.description %></p> 
+
+
+
+            <% if @event.reports != [] %>
+              <div class="detailsInfoBox">
+                <h3>Race Reports</h3>
+                <% @reports.each do |report| %>
+                  <div class="media media-comment">
+                    <div class="media-left">
+                    <img src="<%= report.user.avatar %>" class="media-object img-circle" alt="Image User">
+                    </div>
+                    <div class="media-body">
+                      <h3 class="media-heading"><a href="/users/<%= report.user.id %>"><%= report.user.first_name %> <%= report.user.last_name %></a></h3>
+                      <ul class="list-inline rating">
+                        <% report.overall_rating.times do %>
+                          <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                        <% end %>
+                        <% (5 - report.overall_rating).times do %>
+                          <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                        <% end %>
+                        <%= report.overall_rating %> Star<% if report.overall_rating > 1 %>s<% end %>
+                      </ul>
+                      <h3 class="media-heading"><a href="/reports/<%= report.id %>"><%= report.title %></a></h3>
+                      <p><%= report.body %> </p>
+                      <p><a href="/reports/<%= report.id %>">Read More...</a></p>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            <% end %>
+
+
+
+
+
           </div>
         </div>
       </div>

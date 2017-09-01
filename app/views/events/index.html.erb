@@ -35,7 +35,7 @@
                     <h2><a v-bind:href="'/events/' + event.id" style="color: #222222">
                       {{ event.title }}
                     </a></h2>
-                    <p>{{ event.datetime }}</p>
+                    <p>{{ new Date(event.datetime) }}</p>
                     <p><span class="placeName">{{ event.location }}</span><br>
                     {{ event.address }}</p>
                   </div> 

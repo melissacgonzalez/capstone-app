@@ -36,6 +36,7 @@ class EventsController < ApplicationController
   def show
     @event = Event.find_by(id: params[:id])
     @registrants = @event.users.where("registrations.status != ?", "Cancelled").order(:last_name, :first_name)
+    @reports = @event.reports
 
     render "show.html.erb"
   end

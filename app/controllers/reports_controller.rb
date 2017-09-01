@@ -15,7 +15,7 @@ class ReportsController < ApplicationController
   end
 
   def new
-    @report = Report.new(overall_rating: 5)
+    @report = Report.new(overall_rating: 5, registration_id: params[:reg_id])
     @events = current_user.events.where("datetime < ?", "now()").order(:datetime => "desc")
     render "new.html.erb"
   end

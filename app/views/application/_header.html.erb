@@ -48,7 +48,7 @@
                 <a href="/users/<%= current_user.id %>" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= current_user.first_name %> <%= current_user.last_name %> <i class="fa fa-angle-down" aria-hidden="true"></i></a>
                 <ul class="dropdown-menu dropdown-menu-left">
                     <li><a href="/users/<%= current_user.id %>">My Profile</a></li>
-                    <li><a href="/reports">My Reports</a></li>
+                    <li><a href="/reports?user=true">My Reports</a></li>
                     <li><a href="/users">Members</a></li>
                     <li><a href="/logout">Log Out</a></li>
                 </ul>

@@ -52,6 +52,7 @@ Event.create(name: "2017 Door County Triathlon - Half Ironman", datetime: "2017-
 itu_api_events = Unirest.get("https://api.triathlon.org/v1/events?per_page=150&start_date=2015-09-14&end_date=2019-09-14&country_id=293", headers:{ "apikey" => ENV["TRIATHLON_ORG_API_KEY"] }).body["data"]
 
 itu_api_events.each do |itu_api_event|
+  event_id = itu_api_event["event_id"]
   date_time = (itu_api_event["event_date"] + " 06:00:00").to_datetime
   event_lat = itu_api_event["event_latitude"]
   event_long = itu_api_event["event_longitude"]
@@ -83,7 +84,6 @@ itu_api_events.each do |itu_api_event|
     new_event_distance = "Olympic"
   end
   
-  event_id = itu_api_event["event_id"]
   images = Unirest.get(
     "https://api.triathlon.org/v1/events/#{event_id}/images?per_page=4", 
     headers:{ "apikey" => ENV["TRIATHLON_ORG_API_KEY"] }
@@ -123,10 +123,17 @@ Registration.create(user_id: 3, event_id: 5, status: "I'm coming!")
 Registration.create(user_id: 4, event_id: 7, status: "Registered")
 Registration.create(user_id: 2, event_id: 8, status: "Registered")
 
-100.times do
+200.times do
+  user = User.find_by(id: rand(1..55))
+  event_id = rand(1..Event.count)
+
+  while user.registrations.find_by(event_id: event_id)
+    event_id = rand(1..Event.count)
+  end
+
   Registration.create(
-    user_id: rand(5..55),
-    event_id: rand(1..8),
+    user_id: user.id,
+    event_id: event_id,
     status: "Registered"
     )
 end
@@ -135,7 +142,9 @@ end
 Report.create(user_id: 4, registration_id: 8, title: "Fast and Fun Race!", body: "What a cute little race!  The transition area was well-organized, and each racer had an assigned rack position.  Everything was clearly marked, so it was quite easy to find your place.  The race start was also well done-- there were plenty of porta-potties near the start and the announcements could be clearly heard.  I was in the first wave, so didn't have to wait too long for my race to start.  The swim course was very well marked with huge orange buoys, so it was nearly impossible to go off course.  They also had kayakers stationed frequently throughout the course, ready to react in case of emergency.  The bike course was super fun-- lots of hills and very well marked.  The aid stations we were marked and volunteers were clearly knowledgeable in how to do the bike hand-offs.  The run course was also very hilly and not very well shaded, so it got quite hot.  But since I was in the first place, I was done well before the sun got super hot.  They had BBQ pulled pork and beer and the post-race party, which was a bit of a disappointment since I thought there would be a pig roast.  But I guess they're doing the roast tomorrow for the Half Ironman.  All in all, great experience!", bib_number: 3, overall_rating: 5, swag_rating: 4, post_party_rating: 4, packet_pickup_rating: 5, race_support_rating: 5)
 Report.create(user_id: 2, registration_id: 9, title: "Nice Half Ironman!  Will definitely do again!", body: "What a cute little race!  The transition area was well-organized, and each racer had an assigned rack position.  Everything was clearly marked, so it was quite easy to find your place.  The race start was also well done-- there were plenty of porta-potties near the start and the announcements could be clearly heard.  I was in the first wave, so didn't have to wait too long for my race to start.  The swim course was very well marked with huge orange buoys, so it was nearly impossible to go off course.  They also had kayakers stationed frequently throughout the course, ready to react in case of emergency.  The bike course was super fun-- lots of hills and very well marked.  The aid stations we were marked and volunteers were clearly knowledgeable in how to do the bike hand-offs.  The run course was also very hilly and not very well shaded, so it got quite hot.  But since I was in the first place, I was done well before the sun got super hot.  The post race party was tons of fun and included a pig roast and beer.  It was nice to have stuff going on at the finish line so my friends and family had something to do while I was still racing.  All in all, great experience!", bib_number: 6, overall_rating: 5, swag_rating: 4, post_party_rating: 5, packet_pickup_rating: 4, race_support_rating: 5)
 
-registrations = Registration.where("event_id = ? OR event_id = ?", "7", "8")
+
+registrations = Registration.joins(:event).where('events.datetime < ?', Time.now)
+
 registrations.each do |registration|
   Report.create(
     user_id: registration.user_id,
@@ -150,8 +159,6 @@ registrations.each do |registration|
     race_support_rating: rand(1..5)
     )
 end
-
-
 
 
 
