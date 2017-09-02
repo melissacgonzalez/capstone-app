@@ -8,20 +8,21 @@
           <p><%= @event.datetime.strftime("%A, %B %e, %Y at %l:%M %P") %></p>
           <p><span class="placeName"><%= @event.location.name %></span>
           <%= @event.location.street_address %>, <%= @event.location.city %>, <%= @event.location.state %> <%= @event.location.zip %></p>
-          
           <div class="listingReview">
-            <ul class="list-inline rating">
-              <% @event.overall_rating.to_i.times do %>
-                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-              <% end %>
-              <% (5 - @event.overall_rating.to_i).times do %>
-                <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
-              <% end %>
-            </ul>
-            <span>( <%= @reports.count %> Reports )</span>
+            <% if @event.reports != [] %>
+              <ul class="list-inline rating">
+                <% @event.overall_rating.to_i.times do %>
+                  <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                <% end %>
+                <% (5 - @event.overall_rating.to_i).times do %>
+                  <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                <% end %>
+              </ul>
+              <span>( <%= @reports.count %> Reports )</span>
+            <% end %>
             <% if current_user.report_for(@event) %>
               <a href="/reports/<%= current_user.report_for(@event).id %>/edit" class="btn btn-primary">Edit Report</a>
-            <% elsif current_user.registration_for(@event) %>
+            <% elsif current_user.registration_for(@event) && @event.datetime < Time.now %>
               <a href="/reports/new?reg_id=<%= @event.registrations.find_by(user_id: current_user.id).id %>" class="btn btn-primary">Write a Report</a>
             <% end %>
           </div>

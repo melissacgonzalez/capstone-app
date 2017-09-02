@@ -24,32 +24,22 @@
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse navbar-ex1-collapse">
           <ul class="nav navbar-nav navbar-right <% if current_user %>mr0<% end %>">
+            <li><a href="/events">Events</a></li>
             <li class="dropdown singleDrop">
-              <a href="" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">All Events <i class="fa fa-angle-down" aria-hidden="true"></i></a>
+              <a href="/reports" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Race Reports <i class="fa fa-angle-down" aria-hidden="true"></i></a>
               <ul class="dropdown-menu dropdown-menu-left">
-                <li><a href="/events">Upcoming Events</a></li>
-                <li><a href="/events?past=true">Past Events</a></li>
+                <li><a href="/reports?user=<%= current_user.first_name %><%= current_user.last_name %>">My Reports</a></li>
+                <li><a href="/reports">All Reports</a></li>
+                <li><a href="/reports/new">Add Report</a></li>
               </ul>
             </li>
-            <li class="dropdown singleDrop">
-              <a href="/events?type=Race" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Races <i class="fa fa-angle-down" aria-hidden="true"></i></a>
-              <ul class="dropdown-menu dropdown-menu-left">
-                <% Sport.all.each do |sport| %>
-                  <% if sport.events != [] %>
-                    <li><a href="/events?type=Race&&sport_id=<%= sport.id%>"><%= sport.name %></a></li>
-                  <% end %>
-                <% end %>
-              </ul>
-            </li>
-            <li><a href="/events?type=Workout">Workouts</a></li>
+            <li><a href="/users">Teammates</a></li>
 
             <% if current_user %>
               <li class=" dropdown singleDrop">
                 <a href="/users/<%= current_user.id %>" class="dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= current_user.first_name %> <%= current_user.last_name %> <i class="fa fa-angle-down" aria-hidden="true"></i></a>
                 <ul class="dropdown-menu dropdown-menu-left">
-                    <li><a href="/users/<%= current_user.id %>">My Profile</a></li>
-                    <li><a href="/reports?user=true">My Reports</a></li>
-                    <li><a href="/users">Members</a></li>
+                    <li><a href="/users/<%= current_user.id %>">My Profile</a></li>                    
                     <li><a href="/logout">Log Out</a></li>
                 </ul>
               </li>

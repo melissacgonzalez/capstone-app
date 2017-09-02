@@ -14,36 +14,36 @@
           <div class="resultBar barSpaceAdjust">
             <h2>We found <span>{{ validEvents.length }}</span> Results for you</h2>
           </div>
-        <!-- START V-FOR LOOP -->        
-          <div v-for="event in modifiedEvents" v-if="isValidEvent(event)">
-            <div class="listContent">
-              <div class="row">
-                <div class="col-sm-5 col-xs-12">
-                  <div class="categoryImage">
-                    <img v-bind:src="event.thumbnail" alt="Image category" class="img-responsive img-rounded">
+          <!-- START V-FOR LOOP -->        
+            <div v-for="event in modifiedEvents" v-if="isValidEvent(event)">
+              <div class="listContent">
+                <div class="row">
+                  <div class="col-sm-5 col-xs-12">
+                    <div class="categoryImage">
+                      <img v-bind:src="event.thumbnail" alt="Image category" class="img-responsive img-rounded">
+                    </div>
+                  </div>  
+                  <div class="col-sm-7 col-xs-12">
+                  <!-- STARS -->
+                    <div v-if="event.overall_rating > 0">
+                      <ul class="list-inline rating">
+                        <li v-for="star in stars(event)"><i v-bind:class="star" aria-hidden="true"></i></li>                  
+                      </ul>
+                    </div>
+                  <!-- STARS -->
+                    <div class="categoryDetails">
+                      <h2><a v-bind:href="'/events/' + event.id" style="color: #222222">
+                        {{ event.title }}
+                      </a></h2>
+                      <p>{{ new Date(event.datetime) }}</p>
+                      <p><span class="placeName">{{ event.location }}</span><br>
+                      {{ event.address }}</p>
+                    </div> 
                   </div>
-                </div>  
-                <div class="col-sm-7 col-xs-12">
-                <!-- STARS -->
-                  <div v-if="event.overall_rating > 0">
-                    <ul class="list-inline rating">
-                      <li v-for="star in stars(event)"><i v-bind:class="star" aria-hidden="true"></i></li>                   
-                    </ul>
-                  </div>
-                <!-- STARS -->
-                  <div class="categoryDetails">
-                    <h2><a v-bind:href="'/events/' + event.id" style="color: #222222">
-                      {{ event.title }}
-                    </a></h2>
-                    <p>{{ new Date(event.datetime) }}</p>
-                    <p><span class="placeName">{{ event.location }}</span><br>
-                    {{ event.address }}</p>
-                  </div> 
                 </div>
-              </div>
-            </div> 
-          </div>
-        <!-- END OF V-FOR LOOP -->     
+              </div> 
+            </div>
+          <!-- END OF V-FOR LOOP -->     
         </div><!-- END OF COL-SM-8 COL-XS-12 -->
         
         <div class="col-sm-4 col-xs-12">
@@ -54,20 +54,23 @@
                 <input type="text" v-model="eventFilter" class="form-control" placeholder="What are you looking for?" aria-describedby="basic-addon2" >
                 <a href="/events" class="input-group-addon" id="basic-addon2"><i class="fa fa-search" aria-hidden="true"></i></a>
               </div>
-              <br>
-              <div class="input-group">
-                <a v-on:click="toggleSortOrder()">Reverse Sort</a>
-              </div>
-              <br>
-              <div class="input-group">
-                <a v-on:click="togglePastEvents()">Toggle Past/Upcoming</a>
-              </div>
-              <br>
-              <div class="input-group">
-                <a v-on:click="allEvents()">All Events</a>
+            </div>
+          </div>
+
+          <div class="sidebarInner sidebarCategory">
+            <div class="panel panel-default">
+              <div class="panel-heading">Sort Results</div>
+              <div class="panel-body">
+                <ul class="list-unstyle categoryList">
+                  <li><a v-on:click="setTiming('upcoming')">Upcoming Events</a></li>
+                  <li><a v-on:click="setTiming('past')">Past Events</a></li> 
+                  <li><a v-on:click="setTiming('all')">All Events</a></li>
+                  <li><a v-on:click="toggleSortOrder()">Reverse Sort</a></li> 
+                </ul>
               </div>
             </div>
           </div>
+
           <div class="sidebarInner sidebarCategory">
             <div class="panel panel-default">
               <div class="panel-heading">Filter by Location</div>

@@ -92,7 +92,7 @@
                   <% if current_user%>
                     <li><a href="/users/<%= current_user.id %>">My Profile</a></li>
                     <li><a href="/events?user=true&&type=Race">My Races</a></li>
-                    <li><a href="/reports?user=true">My Reports</a></li>
+                    <li><a href="/reports?user=<%= current_user.first_name %><%= current_user.last_name %>">My Reports</a></li>
                   <% end %>
                 </ul>
               </div>

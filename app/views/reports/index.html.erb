@@ -16,9 +16,8 @@
             <thead>
               <tr>
                 <th data-priority="">Race Report</th>
+                <th data-priority="">Author</th>
                 <th data-priority="1">Rating</th>
-                <th data-priority="2">Posted on</th>
-                <th data-priority="3">Last Edited</th>
                 <th data-priority="4">Status</th>
                 <th data-priority="5">Action</th>
               </tr>
@@ -26,7 +25,11 @@
             <tbody>
               <% @reports.each do |report| %>
                 <tr>
-                  <td><a href="/reports/<%= report.id %>"><%= report.title %></a><br><%= report.registration.event.name %></td>
+                  <td>
+                    <a href="/reports/<%= report.id %>"><%= report.title %></a><br>
+                    <a href="/events/<%= report.registration.event.id %>"  style="color: #222222"><%= report.registration.event.name %></a>
+                  </td>
+                  <td><%= report.user.first_name %> <%= report.user.last_name %></td>
                   <td>
                     <ul class="list-inline rating">
                       <% report.overall_rating.times do %>
@@ -36,12 +39,7 @@
                         <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
                       <% end %>
                     </ul>
-                  </td>
-                  <td>
-                    <%= report.created_at.strftime("%-m/%e/%Y") %><br><%= report.created_at.strftime("%l:%M %P") %>
-                  </td>
-                  <td>
-                    <%= report.updated_at.strftime("%-m/%e/%Y") %><br><%= report.updated_at.strftime("%l:%M %P") %>
+                    ( <%= report.overall_rating %> Star<% if report.overall_rating > 1 %>s<% end %> )
                   </td>
                   <td><span class="label label-success">Posted</span></td>
                   <td>                    
