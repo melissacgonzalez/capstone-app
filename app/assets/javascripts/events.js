@@ -15,6 +15,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         type: 'get',
         success: function(response) {
           this.events = response;
+          console.log(this.events);
           this.initializeMap();
         }.bind(this)
       });
@@ -284,15 +285,24 @@ document.addEventListener("DOMContentLoaded", function(event) {
         }
         var validName = event.title.toLowerCase().indexOf(this.eventFilter.toLowerCase()) !== -1;
         var validType = event.event_type.toLowerCase().indexOf(this.eventFilter.toLowerCase()) !== -1;
+        var validLocation = event.location_details.city.toLowerCase().indexOf(this.eventFilter.toLowerCase()) !== -1;
+        var validSport;
+        if (event.sport) {
+          validSport = event.sport.toLowerCase().indexOf(this.eventFilter.toLowerCase()) !== -1;
+        }
         var validDistance;
         if (event.distance) {
           validDistance = event.distance.toLowerCase().indexOf(this.eventFilter.toLowerCase()) !== -1;
         }
-        var valid = (validTiming ? validName || validType || validDistance : validTiming);
+        var valid = (validTiming ? validName || validLocation || validType || validSport || validDistance : validTiming);
         if (event.marker) {
           event.marker.setVisible(valid);
         }
         return valid;
+      },
+      formatDateTime: function(dateTime) {
+        var formattedDateTime = new Date(dateTime).toString();
+        return formattedDateTime;
       },
       stars: function(event) {
         var stars = [];
@@ -309,6 +319,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         this.sortAscending = !this.sortAscending;
       },
       setTiming: function(inputTiming) {
+        this.eventFilter = "";
         this.timing = inputTiming;
       },      
     },

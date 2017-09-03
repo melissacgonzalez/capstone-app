@@ -20,10 +20,17 @@
               </ul>
               <span>( <%= @reports.count %> Reports )</span>
             <% end %>
-            <% if current_user.report_for(@event) %>
+
+            <% if current_user && current_user.report_for(@event) %>
               <a href="/reports/<%= current_user.report_for(@event).id %>/edit" class="btn btn-primary">Edit Report</a>
-            <% elsif current_user.registration_for(@event) && @event.datetime < Time.now %>
+            <% elsif current_user && current_user.registration_for(@event) && @event.datetime < Time.now %>
               <a href="/reports/new?reg_id=<%= @event.registrations.find_by(user_id: current_user.id).id %>" class="btn btn-primary">Write a Report</a>
+            <% elsif current_user && current_user.registration_for(@event) && @event.datetime > Time.now %>
+              <button type="button" class="btn btn-primary" class="button" data-toggle="modal" data-target="#loginModal"> <span>Edit RSVP</span> </button>   
+            <% elsif current_user %>
+              <button type="button" class="btn btn-primary" class="button" data-toggle="modal" data-target="#loginModal"> <span>RSVP</span> </button>                        
+            <% else %>
+              <button type="button" class="btn btn-primary" class="button" data-toggle="modal" data-target="#loginModal"> + <span>Log In to RSVP</span> </button>
             <% end %>
           </div>
 
@@ -92,8 +99,11 @@
         </div>
       </div>
       <div class="col-sm-4 col-xs-12">
-        <div class="clearfix map-sidebar map-right">
+<!--         <div class="clearfix map-sidebar map-right">
           <div id="map" style="position:relative; margin: 0;padding: 0;height: 538px; max-width: none;"></div>
+        </div> -->
+        <div class="listSidebar">
+          <h3>Related Races</h3>
         </div>
         <div class="listSidebar">
           <% if current_user %>         
@@ -136,20 +146,10 @@
               <% end %>
             </ul>
           <% else %>
-            <h3>Login to RSVP!</h3>
-            <%= form_tag "/login", method: :post do %>
-              <div class="form-group">
-                <i class="fa fa-envelope" aria-hidden="true"></i>
-                <input type="email" class="form-control" id="email" placeholder="Email" name="email">
-              </div>
-              <div class="form-group">
-                <i class="fa fa-lock" aria-hidden="true"></i>
-                <input type="password" class="form-control" id="pwd" placeholder="Password" name="password">
-              </div>
-              <div class="form-group">
-                <input type="submit" class="btn btn-primary btn-block" value="Log In">
-              </div>
-            <% end %>
+            <h3>RSVP</h3>
+            <h4><%= @registrants.count %> Racebookers Going</h4>
+            <h5>You in?</h5>
+            <button type="button" class="btn btn-primary" class="button" data-toggle="modal" data-target="#loginModal">&nbsp <span>Login to RSVP!</span> &nbsp</button>
           <% end %>
         </div>
       </div>

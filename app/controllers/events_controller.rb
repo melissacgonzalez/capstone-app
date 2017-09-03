@@ -29,7 +29,7 @@ class EventsController < ApplicationController
       @events = events.where("datetime >= ?", "now()").order(:datetime)
     end
     @locations = Location.all.order(:name).select{ |location| location.events.where("datetime > ?", "now()") != [] }
-    @sports = Sport.all.order(:name).select{ |sport| sport.events.where("datetime > ?", "now()") != [] }
+    @sports = Sport.all.order(:name)#.select{ |sport| sport.events.where("datetime > ?", "now()") != [] }
     render "index.html.erb"
   end
 
