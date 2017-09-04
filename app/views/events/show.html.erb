@@ -142,8 +142,24 @@
         <div class="listSidebar" id="app">
           <h3>Related Races</h3>
           <ul>
-            <li v-for="event in modifiedEvents"> {{ event.title }} </li>
+            <% @event.related_races.each do |race| %>
+              <li><a href="/events/<%= race.id %>"><%= race.name %></a> </li> 
+            <% end %>
           </ul>
+          <p></p>
+          <% if @event.related_rating > 0 %>
+            <h5>Average of Related Races:</h5>
+            <ul class="list-inline rating rating-review">
+              <% @event.related_rating.to_i.times do %>
+                <li><i class="fa fa-star" aria-hidden="true"></i></li>
+              <% end %>
+              <% (5 - @event.related_rating.to_i).times do %>
+                <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+              <% end %>
+            </ul>
+            <span>( <%= @event.related_rating.to_i %> Stars )</span>
+            <% end %>
+
         </div>
         <div class="listSidebar">
           <% if current_user %>         

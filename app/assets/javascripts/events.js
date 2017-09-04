@@ -226,7 +226,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
           // When this event is fired the Info Window is opened.
           google.maps.event.addListener(marker, 'click', function() {
             var starsCode;
-            if (value.overall_rating > 0) {
+            if (eventStars !== []) {
               starsCode = '<ul class="list-inline rating">' +
             '<li><i class="' + eventStars[0] + '" aria-hidden="true"' + '></i></li>' +
             '<li><i class="' + eventStars[1] + '" aria-hidden="true"></i></li>' +
@@ -302,7 +302,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
       },
       stars: function(event) {
         var stars = [];
-        var rating = parseInt(event.overall_rating);
+        var rating;
+        if (event.overall_rating > 0) {
+          rating = parseInt(event.overall_rating);
+        } else if (event.related_rating > 0) {
+          rating = parseInt(event.related_rating);
+        }
         for (var i = 0; i < rating; i++) {
           stars.push("fa fa-star");
         }

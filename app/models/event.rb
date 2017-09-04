@@ -35,11 +35,20 @@ class Event < ApplicationRecord
   end
 
   def related_races
-    keywords = self.name.split(" ").shift
-    related_races = []
-    Event.all.each do |event|
-      event_words = event.name.split(" ").shift
-    end
+    keywords = self.name.split(" ")
+    query = keywords.select{|keyword| /[[:alpha:]]/.match(keyword)}
+    related_races = Event.where("name ILIKE ? AND event_type = ? AND id != ?", "%#{query[0]} #{query[1]}%", "Race", self.id)
     return related_races
+  end
+
+  def related_rating
+    related_races = self.related_races
+    race_ratings = related_races.map { |race| race.overall_rating }.select { |rating| rating > 0 }
+    if race_ratings.count > 0
+      average_rating = (race_ratings.reduce(0) { |sum, rating| sum + rating })/race_ratings.count
+      return average_rating
+    else
+      return -1
+    end
   end
 end

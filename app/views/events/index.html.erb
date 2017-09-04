@@ -25,7 +25,7 @@
                   </div>  
                   <div class="col-sm-7 col-xs-12">
                   <!-- STARS -->
-                    <div v-if="event.overall_rating > 0">
+                    <div v-if="stars(event)">
                       <ul class="list-inline rating">
                         <li v-for="star in stars(event)"><i v-bind:class="star" aria-hidden="true"></i></li>                  
                       </ul>
