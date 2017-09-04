@@ -157,17 +157,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
         };
         //create a google map instance into the Dom element
         var map = new google.maps.Map(document.getElementById("map-canvas"),mapOptions);
-
-        /*
-        Path to json file that contains listing data for the marker. Make sure you are calling this file through a server.
-         */
-        // var url = '/api/events';
-
-        // // define the format of the file retrive from server. here it is in JSON format
-        // var mapdata = {
-        //     format: 'json'
-        // };
-        // the ajax callback function. Do all the stuff you want to do with the remote data in between this function.
         var data = this.events;
         //loop through each of the single JSON object obtained from the JSON file.
         var markers = [];
@@ -190,6 +179,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
             infobox.isOpen = false;
           });
         });
+
+        var that = this;
+
         $.each(data, function(i, value) {
           var markerCenter = new google.maps.LatLng(value.latitude, value.longitude);
 
@@ -200,7 +192,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             verified = '<div class="marker-verified"><i class="fa fa-check"></i></div>';
           }
 
-
+          var eventStarsFunction = that.stars;
           function getMarkerContent(value) {
             var content = '<div id="marker-' + value.id + '" class="flip-container">' + verified +
             '<div class="flipper">' +
@@ -229,22 +221,26 @@ document.addEventListener("DOMContentLoaded", function(event) {
           });
           markers.push(marker);
           data[i].marker = marker;
-
+          var eventStars = eventStarsFunction(value);
           // This event expects a click on a marker
           // When this event is fired the Info Window is opened.
           google.maps.event.addListener(marker, 'click', function() {
-            var content = '<div class="infobox-close"><i class="fa fa-close"></i></div>'+
+            var starsCode;
+            if (value.overall_rating > 0) {
+              starsCode = '<ul class="list-inline rating">' +
+            '<li><i class="' + eventStars[0] + '" aria-hidden="true"' + '></i></li>' +
+            '<li><i class="' + eventStars[1] + '" aria-hidden="true"></i></li>' +
+            '<li><i class="' + eventStars[2] + '" aria-hidden="true"></i></li>' +
+            '<li><i class="' + eventStars[3] + '" aria-hidden="true"></i></li>' +
+            '<li><i class="' + eventStars[4] + '" aria-hidden="true"></i></li>' +
+            '</ul>';
+            }
+            var content = '<div class="infobox-close"><i class="fa fa-close"></i></div>' +
             '<div id="iw-container" style="background-image: url(' + marker.data.thumbnail + ');">' +
             '<div class="iw-content">' +
-            '<ul class="list-inline rating">'+
-            '<li><i class="fa fa-star" aria-hidden="true"></i></li>'+
-            '<li><i class="fa fa-star" aria-hidden="true"></i></li>'+
-            '<li><i class="fa fa-star" aria-hidden="true"></i></li>'+
-            '<li><i class="fa fa-star" aria-hidden="true"></i></li>'+
-            '<li><i class="fa fa-star" aria-hidden="true"></i></li>'+
-            '</ul>'+
-            '<div class="iw-subTitle">'+ marker.data.title +'</div>' +
-            '<p>' + marker.data.address + '</p>'+
+            starsCode +
+            '<div class="iw-subTitle">' + marker.data.title + '</div>' +
+            '<p>' + marker.data.address + '</p>' +
             '</div>' +
             '<div class="iw-bottom-gradient"></div>' +
             '</div>';

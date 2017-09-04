@@ -20,4 +20,5 @@ json.array! @events.each do |event|
   json.reports event.reports
   json.overall_rating event.overall_rating
 
+  json.starsVisible (event.datetime < Time.now)
 end
