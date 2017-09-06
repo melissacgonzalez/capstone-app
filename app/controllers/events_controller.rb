@@ -28,16 +28,23 @@ class EventsController < ApplicationController
     else
       @events = events.where("datetime >= ?", "now()").order(:datetime)
     end
-    
+
     @locations = Location.all.order(:name)#.select{ |location| location.events.where("datetime > ?", "now()") != [] }
     @sports = Sport.all.order(:name)#.select{ |sport| sport.events.where("datetime > ?", "now()") != [] }
+    @countries = {}
+    @locations.each do |location|
+      if !@countries[location.country]
+        @countries[location.country] = true
+      end
+    end
+    @countries = @countries.sort
     render "index.html.erb"
   end
 
   def show
     @event = Event.find_by(id: params[:id])
     @registrants = @event.users.where("registrations.status != ?", "Cancelled").order(:last_name, :first_name)
-    @reports = @event.reports
+    @event.reports != [] ? @reports = @event.reports : @reports = @event.related_reports
 
     render "show.html.erb"
   end

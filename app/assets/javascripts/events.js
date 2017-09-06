@@ -281,7 +281,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
         }
         var validName = event.title.toLowerCase().indexOf(this.eventFilter.toLowerCase()) !== -1;
         var validType = event.event_type.toLowerCase().indexOf(this.eventFilter.toLowerCase()) !== -1;
-        var validLocation = event.location_details.city.toLowerCase().indexOf(this.eventFilter.toLowerCase()) !== -1;
+        var validCity = event.location_details.city.toLowerCase().indexOf(this.eventFilter.toLowerCase()) !== -1;
+        var validCountry = event.location_details.country.toLowerCase().indexOf(this.eventFilter.toLowerCase()) !== -1;
         var validSport;
         if (event.sport) {
           validSport = event.sport.toLowerCase().indexOf(this.eventFilter.toLowerCase()) !== -1;
@@ -290,7 +291,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         if (event.distance) {
           validDistance = event.distance.toLowerCase().indexOf(this.eventFilter.toLowerCase()) !== -1;
         }
-        var valid = (validTiming ? validName || validLocation || validType || validSport || validDistance : validTiming);
+        var valid = (validTiming ? validName || validCity || validCountry || validType || validSport || validDistance : validTiming);
         if (event.marker) {
           event.marker.setVisible(valid);
         }
@@ -304,9 +305,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
         var stars = [];
         var rating;
         if (event.overall_rating > 0) {
-          rating = parseInt(event.overall_rating);
+          rating = Math.round(event.overall_rating);
         } else if (event.related_rating > 0) {
-          rating = parseInt(event.related_rating);
+          rating = Math.round(event.related_rating);
         }
         for (var i = 0; i < rating; i++) {
           stars.push("fa fa-star");

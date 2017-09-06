@@ -27,7 +27,7 @@
                 <tr>
                   <td>
                     <a href="/reports/<%= report.id %>"><%= report.title %></a><br>
-                    <a href="/events/<%= report.registration.event.id %>"  style="color: #222222"><%= report.registration.event.name %></a>
+                    <a href="/events/<%= report.registration.event.id %>"  style="color: #222222"><%= report.registration.event.name.truncate(75) %></a>
                   </td>
                   <td><%= report.user.first_name %> <%= report.user.last_name %></td>
                   <td>

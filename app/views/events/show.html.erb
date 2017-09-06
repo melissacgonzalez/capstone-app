@@ -48,10 +48,10 @@
           <h2><%= @event.name.split("- ")[0] %></h2>
           <p><%= @event.datetime.strftime("%A, %B %e, %Y at %l:%M %P") %></p>
           <p><span class="placeName"><%= @event.location.name %></span>
-          <%= @event.location.street_address %>, <%= @event.location.city %>, <%= @event.location.state %> <%= @event.location.zip %></p>
+          <%= @event.address %><br><%= @event.location.country %></p>
           <div class="listingReview">
             <% if @event.reports != [] %>
-              <ul class="list-inline rating">
+              <ul class="list-inline rating rating-review">
                 <% @event.overall_rating.to_i.times do %>
                   <li><i class="fa fa-star" aria-hidden="true"></i></li>
                 <% end %>
@@ -64,6 +64,7 @@
 
             <% if current_user && current_user.report_for(@event) %>
               <a href="/reports/<%= current_user.report_for(@event).id %>/edit" class="btn btn-primary">Edit Report</a>
+
             <% elsif current_user && current_user.registration_for(@event) && @event.datetime < Time.now %>
               <a href="/reports/new?reg_id=<%= @event.registrations.find_by(user_id: current_user.id).id %>" class="btn btn-primary">Write a Report</a>
             
@@ -139,28 +140,29 @@
         </div>
       </div>
       <div class="col-sm-4 col-xs-12">
-        <div class="listSidebar" id="app">
-          <h3>Related Races</h3>
-          <ul>
-            <% @event.related_races.each do |race| %>
-              <li><a href="/events/<%= race.id %>"><%= race.name %></a> </li> 
+        <% if @event.related_races != [] %>
+          <div class="listSidebar">
+            <% if @event.related_rating > 0 %>
+              <h5>Average of Related Races:</h5>
+              <ul class="list-inline rating rating-review">
+                <% @event.related_rating.round(0).times do %>
+                  <li><i class="fa fa-star" aria-hidden="true"></i></li>
+                <% end %>
+                <% (5 - @event.related_rating.round(0)).times do %>
+                  <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+                <% end %>
+              </ul>
+              <span>( <%= @event.related_rating %> Stars )</span>
             <% end %>
-          </ul>
-          <p></p>
-          <% if @event.related_rating > 0 %>
-            <h5>Average of Related Races:</h5>
-            <ul class="list-inline rating rating-review">
-              <% @event.related_rating.to_i.times do %>
-                <li><i class="fa fa-star" aria-hidden="true"></i></li>
-              <% end %>
-              <% (5 - @event.related_rating.to_i).times do %>
-                <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
+            <p></p>
+            <h3>Related Races</h3>
+            <ul class="list-unstyled sidebarList">
+              <% @event.related_races.each do |race| %>
+                <li><a href="/events/<%= race.id %>"><%= race.name %></a> </li> 
               <% end %>
             </ul>
-            <span>( <%= @event.related_rating.to_i %> Stars )</span>
-            <% end %>
-
-        </div>
+          </div>
+        <% end %>
         <div class="listSidebar">
           <% if current_user %>         
             <% if @event.datetime > Time.now %>
@@ -169,7 +171,6 @@
               
               <h3>Who's Going?</h3>
             <% else %>
-              <h3>Average Rating: <%= @event.overall_rating %> Stars</h3>
               <h3>Who Went?</h3>
             <% end %>
             <ul class="list-unstyled sidebarList">
@@ -189,7 +190,6 @@
     </div>
   </div>
 </section>
-
 
 
 

@@ -17,7 +17,7 @@ class Event < ApplicationRecord
   end
 
   def address
-    return "#{self.location.street_address}, #{self.location.city}, #{self.location.state} #{self.location.zip}"
+    return "#{self.location.street_address} #{self.location.city} #{self.location.state} #{self.location.zip}"
   end
 
   def time_until
@@ -41,12 +41,23 @@ class Event < ApplicationRecord
     return related_races
   end
 
+  def related_reports
+    related_races = self.related_races
+    reports_arrays = related_races.map { |race| race.reports }.select { |reports| reports != []}
+    reports = []
+    reports_arrays.each do |reports_array|
+      reports_array.each do |report|
+        reports << report
+      end
+    end
+  end
+
   def related_rating
     related_races = self.related_races
     race_ratings = related_races.map { |race| race.overall_rating }.select { |rating| rating > 0 }
     if race_ratings.count > 0
       average_rating = (race_ratings.reduce(0) { |sum, rating| sum + rating })/race_ratings.count
-      return average_rating
+      return average_rating.round(1)
     else
       return -1
     end
