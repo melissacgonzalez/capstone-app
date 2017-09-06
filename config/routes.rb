@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   get "/events" => "events#index"
   get "/events/:id" => "events#show"
+  get "/races" => "events#races"
 
   post "/registrations" => "registrations#create"
   get "/registrations/:id/edit" => "registrations#edit"

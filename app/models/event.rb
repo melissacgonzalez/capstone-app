@@ -62,4 +62,16 @@ class Event < ApplicationRecord
       return -1
     end
   end
+
+  def popularity
+    registrant_count = self.registrations.where("status != ?", "Cancelled").count
+    if self.overall_rating > 0
+      popularity = registrant_count * self.overall_rating
+    elsif self.related_rating > 0
+      popularity = registrant_count * self.related_rating
+    else
+      popularity = registrant_count
+    end
+    return popularity
+  end
 end

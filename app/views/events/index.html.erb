@@ -24,20 +24,21 @@
                     </div>
                   </div>  
                   <div class="col-sm-7 col-xs-12">
-                  <!-- STARS -->
-                    <div v-if="stars(event)">
-                      <ul class="list-inline rating">
-                        <li v-for="star in stars(event)"><i v-bind:class="star" aria-hidden="true"></i></li>                  
-                      </ul>
-                    </div>
-                  <!-- STARS -->
                     <div class="categoryDetails">
+                      <!-- STARS -->
+                        <div v-if="stars(event)">
+                          <ul class="list-inline rating">
+                            <li v-for="star in stars(event)"><i v-bind:class="star" aria-hidden="true"></i></li>                  
+                          </ul>
+                        </div>
+                      <!-- STARS -->
                       <h2><a v-bind:href="'/events/' + event.id" style="color: #222222">
                         {{ event.title }}
-                      </a></h2>
+                      </a><span class="likeCount" v-if="event.registrant_count > 0"><i class="fa fa-group" aria-hidden="true"></i> {{ event.registrant_count }}</span></h2>
                       <p>{{ formatDateTime(event.datetime) }}</p>
                       <p><span class="placeName" v-if="event.location">{{ event.location }}</span><br v-if="event.location">
                       {{ event.address }}<br v-if="event.location_details.country">{{ event.location_details.country.toUpperCase() }}</p>
+                      <h4>{{ event.distance}} {{ event.sport }} <span v-if="event.sport.endsWith('ing')">Race </span></h4>
                     </div> 
                   </div>
                 </div>
@@ -63,6 +64,9 @@
                   <li><a v-on:click="setTiming('upcoming')">Upcoming Events</a></li>
                   <li><a v-on:click="setTiming('past')">Past Events</a></li> 
                   <li><a v-on:click="setTiming('all')">All Events</a></li>
+                  <li><a v-on:click="sortAttribute = 'popularity', sortAscending = false">Sort By Popularity</a></li>
+                  <li><a v-on:click="sortAttribute = 'datetime'">Sort By Date</a></li>
+
                   <li><a v-on:click="toggleSortOrder()">Reverse Sort</a></li> 
                 </ul>
               </div>

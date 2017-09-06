@@ -29,9 +29,8 @@
               <li class="dropdown singleDrop">
                 <a href="/reports" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Race Reports <i class="fa fa-angle-down" aria-hidden="true"></i></a>
                 <ul class="dropdown-menu dropdown-menu-left">
-                  
-                  <li><a href="/reports?user=<%= current_user.first_name %><%= current_user.last_name %>">My Reports</a></li>
                   <li><a href="/reports">All Reports</a></li>
+                  <li><a href="/reports?user=<%= current_user.first_name %><%= current_user.last_name %>">My Reports</a></li>
                   <li><a href="/reports/new">Add Report</a></li>
                 </ul>
               </li>

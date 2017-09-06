@@ -20,5 +20,8 @@ json.array! @events.each do |event|
   json.reports event.reports
   json.overall_rating event.overall_rating
   json.related_rating event.related_rating
+
+  json.registrant_count event.registrations.where("status != ?", "Cancelled").count
+  json.popularity event.popularity
   
 end

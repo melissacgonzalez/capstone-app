@@ -15,7 +15,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
         type: 'get',
         success: function(response) {
           this.events = response;
-          console.log(this.events);
           this.initializeMap();
         }.bind(this)
       });
@@ -150,7 +149,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
         var mapOptions = {
           center: {lat: 41.8825524, lng: -87.62255140000002},
-          zoom: 12,
+          zoom: 3,
           mapTypeId: google.maps.MapTypeId.ROADMAP,
           styles:mapStyles,
           scrollwheel: false

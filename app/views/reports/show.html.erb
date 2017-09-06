@@ -12,7 +12,7 @@
             <img src="<%= @report.user.avatar %>" class="media-object img-circle" alt="Image User">           
             </div>
             <div class="media-body">
-              <h3><%= @report.registration.event.name %></h3>
+              <h3><a href="/events/<%= @report.registration.event.id %>"><%= @report.registration.event.name %></a> </h3>
               <h4><a href="/users/<%= @report.user_id %>"> <%= @report.user.first_name %> <%= @report.user.last_name %></a></h4>
             </div>
           </div>
