@@ -7,7 +7,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
       eventFilter: "",
       sortAttribute: "datetime",
       sortAscending: true,
-      timing: "upcoming"
+      timing: "upcoming", 
+      map: ""
     },
     mounted: function() {
       $.ajax({
@@ -18,6 +19,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
           this.initializeMap();
         }.bind(this)
       });
+    },
+    watch: {
+      validEventsCount: function(events) {
+        this.zoomMap(this.map);
+      }
     },
     methods: {
       initializeMap: function() {
@@ -154,7 +160,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
           scrollwheel: false
         };
         //create a google map instance into the Dom element
-        var map = new google.maps.Map(document.getElementById("map-canvas"),mapOptions);
+        this.map = new google.maps.Map(document.getElementById("map-canvas"),mapOptions);
+        var map = this.map;
         var data = this.events;
         //loop through each of the single JSON object obtained from the JSON file.
         var bounds = new google.maps.LatLngBounds();
@@ -191,7 +198,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
           }
 
           var eventStarsFunction = that.stars;
-          var isValidEvent = that.isValidEvent;
+
           function getMarkerContent(value) {
             var content = '<div id="marker-' + value.id + '" class="flip-container">' + verified +
             '<div class="flipper">' +
@@ -220,12 +227,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
           });
           markers.push(marker);
           data[i].marker = marker;
-          if (isValidEvent(data[i])) {
-            bounds.extend(marker.position);
-          }
+
           var eventStars = eventStarsFunction(value);
           // This event expects a click on a marker
           // When this event is fired the Info Window is opened.
+
           google.maps.event.addListener(marker, 'click', function() {
             var starsCode;
             if (eventStars !== []) {
@@ -268,11 +274,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
             }
           });
         });
-        map.fitBounds(bounds);
-        map.setCenter(bounds.getCenter());
-        console.log(data);
-        // call the jquery ajax function
-        // $.getJSON(url, mapdata, getContent);
       },
       isValidEvent: function(event) {
         var validTiming;
@@ -305,6 +306,19 @@ document.addEventListener("DOMContentLoaded", function(event) {
         var formattedDateTime = new Date(dateTime).toString();
         return formattedDateTime;
       },
+      zoomMap: function(map) {
+        var bounds = new google.maps.LatLngBounds();
+        this.validEvents.forEach(function(validEvent) {
+          bounds.extend(validEvent.marker.getPosition());
+        });
+        map.fitBounds(bounds);
+        map.setCenter(bounds.getCenter());
+        google.maps.event.addListenerOnce(map, 'bounds_changed', function(event) {
+          if (this.getZoom() > 15) {
+            this.setZoom(15);
+          }
+        });
+      },
       stars: function(event) {
         var stars = [];
         var rating;
@@ -334,6 +348,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
         return this.events.filter(function(event) {
           return this.isValidEvent(event);
         }.bind(this));
+      },
+      validEventsCount: function() {
+        return this.validEvents.length;
       },
       modifiedEvents: function() {
         return this.validEvents.sort(function(event1, event2) {
