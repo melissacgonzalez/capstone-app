@@ -149,7 +149,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
         var mapOptions = {
           center: {lat: 41.8825524, lng: -87.62255140000002},
-          zoom: 3,
           mapTypeId: google.maps.MapTypeId.ROADMAP,
           styles:mapStyles,
           scrollwheel: false
@@ -158,6 +157,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
         var map = new google.maps.Map(document.getElementById("map-canvas"),mapOptions);
         var data = this.events;
         //loop through each of the single JSON object obtained from the JSON file.
+        var bounds = new google.maps.LatLngBounds();
         var markers = [];
         var infobox = new InfoBox({
           content: 'empty',
@@ -186,12 +186,12 @@ document.addEventListener("DOMContentLoaded", function(event) {
 
           var verified = '';
 
-
           if (value.verified) {
             verified = '<div class="marker-verified"><i class="fa fa-check"></i></div>';
           }
 
           var eventStarsFunction = that.stars;
+          var isValidEvent = that.isValidEvent;
           function getMarkerContent(value) {
             var content = '<div id="marker-' + value.id + '" class="flip-container">' + verified +
             '<div class="flipper">' +
@@ -220,6 +220,9 @@ document.addEventListener("DOMContentLoaded", function(event) {
           });
           markers.push(marker);
           data[i].marker = marker;
+          if (isValidEvent(data[i])) {
+            bounds.extend(marker.position);
+          }
           var eventStars = eventStarsFunction(value);
           // This event expects a click on a marker
           // When this event is fired the Info Window is opened.
@@ -265,6 +268,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
             }
           });
         });
+        map.fitBounds(bounds);
+        map.setCenter(bounds.getCenter());
         console.log(data);
         // call the jquery ajax function
         // $.getJSON(url, mapdata, getContent);

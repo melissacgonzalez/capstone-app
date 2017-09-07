@@ -52,10 +52,10 @@
           <div class="listingReview">
             <% if @event.reports != [] %>
               <ul class="list-inline rating rating-review">
-                <% @event.overall_rating.to_i.times do %>
+                <% @event.overall_rating.round.times do %>
                   <li><i class="fa fa-star" aria-hidden="true"></i></li>
                 <% end %>
-                <% (5 - @event.overall_rating.to_i).times do %>
+                <% (5 - @event.overall_rating.round).times do %>
                   <li><i class="fa fa-star-o" aria-hidden="true"></i></li>
                 <% end %>
               </ul>
@@ -190,7 +190,6 @@
     </div>
   </div>
 </section>
-
 
 
 
