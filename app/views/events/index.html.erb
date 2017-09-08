@@ -6,58 +6,60 @@
   </section>
 
   <!-- CATEGORY SEARCH SECTION -->
-<section class="clearfix searchArea banerInfo">
-  <form>
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-4 col-xs-12">
-          <div class="form-group">
-            <div class="input-group">
-              <div class="input-group-addon">Find</div>
-              <input type="text" v-model="eventFilter" class="form-control" placeholder="What are you looking for?" id="findItem">
-              <div class="input-group-addon addon-right"></div>
+  <section class="clearfix searchArea banerInfo">
+    <form>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-4 col-xs-12">
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-addon">Find</div>
+                <input type="text" v-model="eventFilter" class="form-control" placeholder="What are you looking for?" id="findItem">
+                <div class="input-group-addon addon-right"></div>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-sm-4 col-xs-12">
-          <div class="form-group">
-            <div class="input-group">
-              <div class="input-group-addon">Sport</div>
-              <input type="text" class="form-control" list="sports" placeholder="All Sports" v-model="sportFilter" placeholder="Sports">
-              <datalist id="sports">
-                <% @sports.each do |sport| %>
-                  <option><%= sport.name %></option> 
-                <% end %>
-              </datalist>
-              <div class="input-group-addon addon-right"></div>
+          <div class="col-sm-4 col-xs-12">
+            <div class="form-group">
+              <div class="input-group">
+                <div class="input-group-addon">Country</div>
+                <input type="text" class="form-control" v-model="countryFilter" list="countries" placeholder="All Countries">
+                <datalist id="countries">
+                  <% @countries.each do |country| %>
+                    <option><%= country[0] %></option>  
+                  <% end %>
+                </datalist>
+                <div class="input-group-addon addon-right"><i class="icon-listy icon-target" aria-hidden="true"></i></div>
+              </div>
             </div>
           </div>
-        </div>
-        <div class="col-sm-4 col-xs-12">
-          <div class="form-group">
-            <div class="input-group">
-              <div class="input-group-addon">Country</div>
-              <input type="text" class="form-control" v-model="countryFilter" list="countries" placeholder="All Countries">
-              <datalist id="countries">
-                <% @countries.each do |country| %>
-                  <option v-on:click="countryFilter = '<%= country[0] %>'"><%= country[0] %></option>  
-                <% end %>
-              </datalist>
-              <div class="input-group-addon addon-right"><i class="icon-listy icon-target" aria-hidden="true"></i></div>
+          <div class="col-sm-4 col-xs-12">
+            <div class="searchPart">
+              <div class="searchPartInner">
+                <div class="searchPartTitle">Events</div>
+                <div class="searchBoxSelect">
+                  <select v-model="timing" class="form-control">    
+                    <option value="upcoming">Upcoming</option>   
+                    <option value="past">Past</option>
+                    <option value="all">All</option>
+                  </select>
+                </div>
+              </div>
             </div>
           </div>
-        </div>
 
-
+        </div>
       </div>
-    </div>
-  </form>
-</section>
+    </form>
+  </section>
+
+
+
 
   <!-- CATEGORY LIST SECTION -->
   <section class="clerfix">
     <div class="container">
-      <h1>Events</h1>
+      <h1>{{ timing.toUpperCase() }} Events</h1>
       <div class="row">
         <div class="col-sm-8 col-xs-12">
           <div class="resultBar barSpaceAdjust">

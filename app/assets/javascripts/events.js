@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
       countryFilter: "",
       sortAttribute: "datetime",
       sortAscending: true,
-      timing: "upcoming", 
+      timing: "upcoming",
       map: ""
     },
     mounted: function() {
