@@ -5,6 +5,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
     data: {
       events: [],
       eventFilter: "",
+      sportFilter: "",
+      countryFilter: "",
       sortAttribute: "datetime",
       sortAscending: true,
       timing: "upcoming", 
@@ -154,17 +156,17 @@ document.addEventListener("DOMContentLoaded", function(event) {
         ];
 
         var mapOptions = {
-          center: {lat: 41.8825524, lng: -87.62255140000002},
           mapTypeId: google.maps.MapTypeId.ROADMAP,
           styles:mapStyles,
           scrollwheel: false
         };
+
         //create a google map instance into the Dom element
         this.map = new google.maps.Map(document.getElementById("map-canvas"),mapOptions);
         var map = this.map;
         var data = this.events;
-        //loop through each of the single JSON object obtained from the JSON file.
         var bounds = new google.maps.LatLngBounds();
+
         var markers = [];
         var infobox = new InfoBox({
           content: 'empty',
@@ -187,7 +189,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
         });
 
         var that = this;
-
         $.each(data, function(i, value) {
           var markerCenter = new google.maps.LatLng(value.latitude, value.longitude);
 
@@ -227,11 +228,10 @@ document.addEventListener("DOMContentLoaded", function(event) {
           });
           markers.push(marker);
           data[i].marker = marker;
-
           var eventStars = eventStarsFunction(value);
+
           // This event expects a click on a marker
           // When this event is fired the Info Window is opened.
-
           google.maps.event.addListener(marker, 'click', function() {
             var starsCode;
             if (eventStars !== []) {
@@ -286,8 +286,8 @@ document.addEventListener("DOMContentLoaded", function(event) {
         }
         var validName = event.title.toLowerCase().indexOf(this.eventFilter.toLowerCase()) !== -1;
         var validType = event.event_type.toLowerCase().indexOf(this.eventFilter.toLowerCase()) !== -1;
-        var validCity = event.location_details.city.toLowerCase().indexOf(this.eventFilter.toLowerCase()) !== -1;
-        var validCountry = event.location_details.country.toLowerCase().indexOf(this.eventFilter.toLowerCase()) !== -1;
+        var validAddress = event.address.toLowerCase().indexOf(this.eventFilter.toLowerCase()) !== -1;
+        var validCountry = event.country.toLowerCase().indexOf(this.eventFilter.toLowerCase()) !== -1;
         var validSport;
         if (event.sport) {
           validSport = event.sport.toLowerCase().indexOf(this.eventFilter.toLowerCase()) !== -1;
@@ -296,11 +296,22 @@ document.addEventListener("DOMContentLoaded", function(event) {
         if (event.distance) {
           validDistance = event.distance.toLowerCase().indexOf(this.eventFilter.toLowerCase()) !== -1;
         }
-        var valid = (validTiming ? validName || validCity || validCountry || validType || validSport || validDistance : validTiming);
+        var valid = this.isValidCountry(event) && this.isValidSport(event) && (validTiming ? validName || validAddress || validType || validCountry || validSport || validDistance : validTiming);
         if (event.marker) {
           event.marker.setVisible(valid);
         }
         return valid;
+      },
+      isValidSport: function(event) {
+        var validSport;
+        if (event.sport) {
+          validSport = event.sport.toLowerCase().indexOf(this.sportFilter.toLowerCase()) !== -1;
+        }
+        return validSport;
+      },
+      isValidCountry: function(event) {
+        var validCountry = event.country.toLowerCase().indexOf(this.countryFilter.toLowerCase()) !== -1;
+        return validCountry;
       },
       formatDateTime: function(dateTime) {
         var formattedDateTime = new Date(dateTime).toString();

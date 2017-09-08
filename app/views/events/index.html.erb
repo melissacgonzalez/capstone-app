@@ -5,6 +5,55 @@
     <div id="map-canvas"></div>
   </section>
 
+  <!-- CATEGORY SEARCH SECTION -->
+<section class="clearfix searchArea banerInfo">
+  <form>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-4 col-xs-12">
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-addon">Find</div>
+              <input type="text" v-model="eventFilter" class="form-control" placeholder="What are you looking for?" id="findItem">
+              <div class="input-group-addon addon-right"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4 col-xs-12">
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-addon">Sport</div>
+              <input type="text" class="form-control" list="sports" placeholder="All Sports" v-model="sportFilter" placeholder="Sports">
+              <datalist id="sports">
+                <% @sports.each do |sport| %>
+                  <option><%= sport.name %></option> 
+                <% end %>
+              </datalist>
+              <div class="input-group-addon addon-right"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4 col-xs-12">
+          <div class="form-group">
+            <div class="input-group">
+              <div class="input-group-addon">Country</div>
+              <input type="text" class="form-control" v-model="countryFilter" list="countries" placeholder="All Countries">
+              <datalist id="countries">
+                <% @countries.each do |country| %>
+                  <option v-on:click="countryFilter = '<%= country[0] %>'"><%= country[0] %></option>  
+                <% end %>
+              </datalist>
+              <div class="input-group-addon addon-right"><i class="icon-listy icon-target" aria-hidden="true"></i></div>
+            </div>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </form>
+</section>
+
   <!-- CATEGORY LIST SECTION -->
   <section class="clerfix">
     <div class="container">
@@ -37,7 +86,7 @@
                       </a><span class="likeCount" v-if="event.registrant_count > 0"><i class="fa fa-group" aria-hidden="true"></i> {{ event.registrant_count }}</span></h2>
                       <p>{{ formatDateTime(event.datetime) }}</p>
                       <p><span class="placeName" v-if="event.location">{{ event.location }}</span><br v-if="event.location">
-                      {{ event.address }}<br v-if="event.location_details.country">{{ event.location_details.country.toUpperCase() }}</p>
+                      {{ event.address }}<br v-if="event.country">{{ event.country.toUpperCase() }}</p>
                       <h4>{{ event.distance}} {{ event.sport }} <span v-if="event.sport.endsWith('ing')">Race </span></h4>
                     </div> 
                   </div>
@@ -58,40 +107,24 @@
           </div>
           <div class="sidebarInner sidebarCategory">
             <div class="panel panel-default">
-              <div class="panel-heading">Sort Results</div>
+              <div class="panel-heading">Filter Results</div>
               <div class="panel-body">
                 <ul class="list-unstyle categoryList">
                   <li><a v-on:click="setTiming('upcoming')">Upcoming Events</a></li>
                   <li><a v-on:click="setTiming('past')">Past Events</a></li> 
-                  <li><a v-on:click="setTiming('all')">All Events</a></li>
+                  <li><a v-on:click="setTiming('all')">All Events</a></li> 
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div class="sidebarInner sidebarCategory">
+            <div class="panel panel-default">
+              <div class="panel-heading">Sort Results</div>
+              <div class="panel-body">
+                <ul class="list-unstyle categoryList">
                   <li><a v-on:click="sortAttribute = 'popularity', sortAscending = false">Sort By Popularity</a></li>
                   <li><a v-on:click="sortAttribute = 'datetime'">Sort By Date</a></li>
-
-                  <li><a v-on:click="toggleSortOrder()">Reverse Sort</a></li> 
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="sidebarInner sidebarCategory">
-            <div class="panel panel-default">
-              <div class="panel-heading">Filter by Country</div>
-              <div class="panel-body">
-                <ul class="list-unstyle categoryList">
-                  <% @countries.each do |country| %>
-                    <li><a v-on:click="eventFilter = '<%= country[0] %>'"><%= country[0] %></a></li> 
-                  <% end %>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="sidebarInner sidebarCategory">
-            <div class="panel panel-default">
-              <div class="panel-heading">Filter by Sport</div>
-              <div class="panel-body">
-                <ul class="list-unstyle categoryList">
-                  <% @sports.each do |sport| %>
-                    <li><a v-on:click="eventFilter = '<%= sport.name %>'"><%= sport.name %></a></li> 
-                  <% end %>
+                  <li><a v-on:click="toggleSortOrder()">Reverse Sort</a></li>
                 </ul>
               </div>
             </div>
