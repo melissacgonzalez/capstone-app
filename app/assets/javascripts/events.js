@@ -223,8 +223,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
             map: map,
             shadow: 0,
             content:markerContent,
-            name: value.name,
-            // is_logged_in:value.is_logged_in
+            name: value.name
           });
           markers.push(marker);
           data[i].marker = marker;
@@ -374,4 +373,5 @@ document.addEventListener("DOMContentLoaded", function(event) {
       }
     }
   });
+  
 });
