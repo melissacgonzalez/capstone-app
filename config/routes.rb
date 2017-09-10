@@ -26,8 +26,12 @@ Rails.application.routes.draw do
   patch "/reports/:id" => "reports#update"
   delete "/reports/:id" => "reports#destroy"
 
+  get "/results" => "results#index"
+  get "/results/:id" => "results#show"
+
   namespace :api do
     get "/events" => "events#index"
+    get "/events/:id" => "events#show"
   end
 
 end

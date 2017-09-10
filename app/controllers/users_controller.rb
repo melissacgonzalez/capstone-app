@@ -35,6 +35,9 @@ class UsersController < ApplicationController
   def show
     @user = User.find_by(id: params[:id])
     @races = @user.events.where("event_type = ? AND registrations.status != ?", "Race", "Cancelled")
+    if @user.itu_athlete_id
+      @itu_results = Unirest.get("https://api.triathlon.org/v1/athletes/#{@user.itu_athlete_id}/results?per_page=10", headers:{ "apikey" => ENV["TRIATHLON_ORG_API_KEY"] }).body["data"]
+    end
     render "show.html.erb"
   end
 end

@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 20170805132808) do
     t.string "password_digest"
     t.text "bio"
     t.string "avatar"
+    t.integer "itu_athlete_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
