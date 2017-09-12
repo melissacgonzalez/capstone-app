@@ -1,5 +1,4 @@
 /* global $, google */
-
 var mapStyles = [{
   'elementType': 'geometry',
   'stylers': [{
@@ -255,8 +254,8 @@ var marker;
 var lineCoords = [];
 
 function initMap() {
+  console.log(params);
   var userPosition = navigator.geolocation.getCurrentPosition(success);
-  console.log(userPosition);
   var startLatLng = {lat: lat, lng: lng};
 
   map = new google.maps.Map(document.getElementById('map'), {
@@ -283,7 +282,7 @@ function initMap() {
     content: markerContent
   });
 
-  setInterval(redraw, 500);
+  setInterval(redraw, 3000);
 
   function success(userPosition) {
     var thumbnail = '../img/map/marker-front.png';

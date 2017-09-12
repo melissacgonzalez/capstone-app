@@ -1,2 +1,12 @@
 <h1>Results#index</h1>
+<ul>  
+  <% @itu_events.each do |event| %>
+    <li>
+    <a href="/results/<%= event.id %>">
+      <%= event.name %>
+    </a> 
+    </li>
+
+  <% end %>
+</ul>
 <p>Find me in app/views/results/index.html.erb</p>

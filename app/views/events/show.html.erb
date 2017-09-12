@@ -63,7 +63,7 @@
             <% end %>
 
             <% if current_user && current_user.report_for(@event) %>
-              <a href="/reports/<%= current_user.report_for(@event).id %>/edit" class="btn btn-primary">Edit Report</a>
+              <a href="/reports/<%= current_user.report_for(@event).id %>/edit" class="btn btn-primary"> Edit Report</a>
 
             <% elsif current_user && current_user.registration_for(@event) && @event.datetime < Time.now %>
               <a href="/reports/new?reg_id=<%= @event.registrations.find_by(user_id: current_user.id).id %>" class="btn btn-primary">Write a Report</a>
@@ -75,6 +75,11 @@
                             
             <% elsif @event.datetime > Time.now %>
               <button type="button" class="btn btn-primary" class="button" data-toggle="modal" data-target="#loginModal"> + <span>Log In to RSVP</span> </button>
+            <% end %>
+
+            
+            <% if @event.itu_event_id && @event.datetime < Time.now %>
+              <a href="/results/<%= @event.id %>" type="button" class="btn btn-primary" class="button"> <span>See Results</span> </a>
             <% end %>
           </div>
         </div>
@@ -199,3 +204,7 @@
 
 
 
+
+<script>
+var params = { "id": "<%= params[:id] %>"};
+</script>

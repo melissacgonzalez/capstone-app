@@ -32,6 +32,8 @@ Rails.application.routes.draw do
   namespace :api do
     get "/events" => "events#index"
     get "/events/:id" => "events#show"
+
+    get "results/:id" => "results#show"
   end
 
 end

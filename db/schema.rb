@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(version: 20170805132808) do
     t.string "image2"
     t.string "image3"
     t.string "image4"
+    t.integer "itu_event_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

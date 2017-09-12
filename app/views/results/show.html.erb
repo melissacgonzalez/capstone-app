@@ -1,2 +1,68 @@
-<h1>Results#show</h1>
-<p>Find me in app/views/results/show.html.erb</p>
+<div class="container">
+<h2>Results for <%= @event.name%></h2>
+
+
+<div id="resultsChart">
+  <div v-for="program in eventInfo.programs">
+    <h3>{{ program["prog_name"] }}: {{ program["prog_date"] }} </h3>
+    <div class="row">
+      <div class="col-md-12">
+        <canvas id="{ program['prog_name'] }" count="6"></canvas>
+         <chartjs-bar target="{ program['prog_name'] }" :data="swimResults(program)" :datalabel="dataLabels[0]"></chartjs-bar>
+         <chartjs-bar target="{ program['prog_name'] }" :data="t1Results(program)" :datalabel="dataLabels[1]"></chartjs-bar>
+         <chartjs-bar target="{ program['prog_name'] }" :data="bikeResults(program)" :datalabel="dataLabels[2]"></chartjs-bar>
+         <chartjs-bar target="{ program['prog_name'] }" :data="t2Results(program)" :datalabel="dataLabels[3]"></chartjs-bar>
+         <chartjs-bar target="{ program['prog_name'] }" :data="runResults(program)" :datalabel="dataLabels[4]"></chartjs-bar>
+         <chartjs-bar target="{ program['prog_name'] }" :data="finalResults(program)" :datalabel="dataLabels[5]" :labels="athletes(program)"></chartjs-bar>
+      </div>
+    </div>
+  </div><!-- v-for program in programs-->
+
+
+
+  <% @results.each do |result| %>
+    <h3><%= result["prog_name"] %>: <%= result["prog_date"] %></h3>
+    <div class="row">
+      <div class="col-md-12">
+        <canvas id="<%= result["prog_name"] %>" count="<%= result["results"].length %>"></canvas>
+        <% result["results"].each do |individual| %>
+          <chartjs-bar target="<%= result["prog_name"] %>" :data="<%= 
+            individual['splits'].map{ |split| split.to_time - '00:00:00'.to_time } 
+          %>" :datalabel="'<%= individual["athlete_title"] %>'" :labels="['Swim', 'T1', 'Bike', 'T2', 'Run']"></chartjs-bar>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-1">&nbsp;</div>
+      <% result["results"].each do |individual| %>
+        <div class="col-md-2">
+              
+          <h4><%= individual["athlete_title"] %></h4>
+          <h5>Place: <%= individual["position"] %></h5>
+          <h5>Time: <%= individual["total_time"] %></h5>
+          <ul>
+            <li>Swim: <%= individual["splits"][0] %> <br>
+            <li>T1: <%= individual["splits"][1] %> <br>
+            <li>Bike: <%= individual["splits"][2] %></li>
+            <li>T2: <%= individual["splits"][3] %></li>
+            <li>Run: <%= individual["splits"][4] %></li>
+          </ul>      
+          <p></p>
+        </div>
+      <% end %>
+      <div class="col-md-1">&nbsp;</div>
+      
+    </div>
+
+
+  <% end %>
+
+</div>
+
+</div>
+
+
+<script>
+var params = { "id": "<%= params[:id] %>"};
+</script>

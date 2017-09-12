@@ -1,9 +1,4 @@
-class ResultsController < ApplicationController
-  def index
-    @itu_events = Event.where("itu_event_id IS NOT ?", nil)
-    render "index.html.erb"
-  end
-
+class Api::ResultsController < ApplicationController
   def show
     @event = Event.find_by(id: params[:id])
     event_programs = []
@@ -15,8 +10,6 @@ class ResultsController < ApplicationController
     }.select { |program|
       program["results"] != []
     }
-    
-    render "show.html.erb"
+    render "show.json.jbuilder"
   end
 end
-

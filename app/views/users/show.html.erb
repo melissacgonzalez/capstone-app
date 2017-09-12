@@ -21,7 +21,7 @@
         </div>
         <% if @user.itu_athlete_id %>
           <div class="listSidebar">
-            <h3>Results</h3>
+            <h3>Race Results</h3>
             <% @itu_results.each do |result| %>
               <div class="contactInfo">
               <h4><%= result["event_title"] %></h4>
