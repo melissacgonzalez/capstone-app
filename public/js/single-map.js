@@ -123,138 +123,137 @@ var mapStyles = [{
   }
 ];
 var chiMarathonCoords = [
-  {"latitude": 41.88044, "longitude": -87.62075}, 
-  {"latitude": 41.88182, "longitude": -87.62075}, 
-  {"latitude": 41.88374, "longitude": -87.62059}, 
-  {"latitude": 41.8864, "longitude": -87.62067}, 
-  {"latitude": 41.88801, "longitude": -87.62062}, 
-  {"latitude": 41.88915, "longitude": -87.6205}, 
-  {"latitude": 41.89037, "longitude": -87.62023}, 
-  {"latitude": 41.89181, "longitude": -87.62022}, 
-  {"latitude": 41.89165, "longitude": -87.62806}, 
-  {"latitude": 41.88883, "longitude": -87.62803}, 
-  {"latitude": 41.88856, "longitude": -87.6279}, 
-  {"latitude": 41.88423, "longitude": -87.62787}, 
-  {"latitude": 41.87816, "longitude": -87.62766}, 
-  {"latitude": 41.87814, "longitude": -87.63225}, 
-  {"latitude": 41.88058, "longitude": -87.63232}, 
-  {"latitude": 41.88363, "longitude": -87.6325}, 
-  {"latitude": 41.88611, "longitude": -87.63246}, 
-  {"latitude": 41.89267, "longitude": -87.63259}, 
-  {"latitude": 41.91006, "longitude": -87.63311}, 
-  {"latitude": 41.91294, "longitude": -87.63313}, 
-  {"latitude": 41.91314, "longitude": -87.63296}, 
-  {"latitude": 41.91326, "longitude": -87.63257}, 
-  {"latitude": 41.91337, "longitude": -87.6317}, 
-  {"latitude": 41.91391, "longitude": -87.63171}, 
-  {"latitude": 41.91443, "longitude": -87.63201}, 
-  {"latitude": 41.91502, "longitude": -87.63269}, 
-  {"latitude": 41.91552, "longitude": -87.63284}, 
-  {"latitude": 41.91611, "longitude": -87.63339}, 
-  {"latitude": 41.91633, "longitude": -87.63368}, 
-  {"latitude": 41.91684, "longitude": -87.63405}, 
-  {"latitude": 41.91742, "longitude": -87.63424}, 
-  {"latitude": 41.91861, "longitude": -87.63447}, 
-  {"latitude": 41.91894, "longitude": -87.63458}, 
-  {"latitude": 41.91922, "longitude": -87.63478}, 
-  {"latitude": 41.91984, "longitude": -87.63542}, 
-  {"latitude": 41.92017, "longitude": -87.63557}, 
-  {"latitude": 41.92249, "longitude": -87.63571}, 
-  {"latitude": 41.9248, "longitude": -87.63578}, 
-  {"latitude": 41.92568, "longitude": -87.63604}, 
-  {"latitude": 41.92566, "longitude": -87.63467}, 
-  {"latitude": 41.925654, "longitude": -87.633605}, 
-  {"latitude": 41.92644, "longitude": -87.63403}, 
-  {"latitude": 41.9278, "longitude": -87.63476}, 
-  {"latitude": 41.93114, "longitude": -87.63711}, 
-  {"latitude": 41.93169, "longitude": -87.63772}, 
-  {"latitude": 41.93237, "longitude": -87.63879}, 
-  {"latitude": 41.9329, "longitude": -87.63932}, 
-  {"latitude": 41.93793, "longitude": -87.63949}, 
-  {"latitude": 41.94127, "longitude": -87.63954}, 
-  {"latitude": 41.94227, "longitude": -87.63995}, 
-  {"latitude": 41.94433, "longitude": -87.64102}, 
-  {"latitude": 41.94865, "longitude": -87.64345}, 
-  {"latitude": 41.94733, "longitude": -87.64727}, 
-  {"latitude": 41.94273, "longitude": -87.64448}, 
-  {"latitude": 41.93449, "longitude": -87.64424}, 
-  {"latitude": 41.93424, "longitude": -87.64425}, 
-  {"latitude": 41.93358, "longitude": -87.64468}, 
-  {"latitude": 41.93279, "longitude": -87.6449}, 
-  {"latitude": 41.93227, "longitude": -87.6448}, 
-  {"latitude": 41.93176, "longitude": -87.64454}, 
-  {"latitude": 41.93142, "longitude": -87.6443}, 
-  {"latitude": 41.92998, "longitude": -87.64347}, 
-  {"latitude": 41.92984, "longitude": -87.64319}, 
-  {"latitude": 41.92959, "longitude": -87.64286}, 
-  {"latitude": 41.92193, "longitude": -87.63828}, 
-  {"latitude": 41.92191, "longitude": -87.63893}, 
-  {"latitude": 41.91959, "longitude": -87.63883}, 
-  {"latitude": 41.91106, "longitude": -87.63859}, 
-  {"latitude": 41.91107, "longitude": -87.63471}, 
-  {"latitude": 41.89986, "longitude": -87.63431}, 
-  {"latitude": 41.88995, "longitude": -87.63403}, 
-  {"latitude": 41.88994, "longitude": -87.63696}, 
-  {"latitude": 41.88882, "longitude": -87.63694}, 
-  {"latitude": 41.88853, "longitude": -87.63687}, 
-  {"latitude": 41.88686, "longitude": -87.63536}, 
-  {"latitude": 41.8851, "longitude": -87.63539}, 
-  {"latitude": 41.87939, "longitude": -87.63526}, 
-  {"latitude": 41.87929, "longitude": -87.6402}, 
-  {"latitude": 41.87873, "longitude": -87.67656}, 
-  {"latitude": 41.87619, "longitude": -87.67651}, 
-  {"latitude": 41.87624, "longitude": -87.67566}, 
-  {"latitude": 41.87626, "longitude": -87.67218}, 
-  {"latitude": 41.87755, "longitude": -87.67067}, 
-  {"latitude": 41.87793, "longitude": -87.64724}, 
-  {"latitude": 41.8696, "longitude": -87.64695}, 
-  {"latitude": 41.86949, "longitude": -87.65136}, 
-  {"latitude": 41.86926, "longitude": -87.66652}, 
-  {"latitude": 41.86352, "longitude": -87.66632}, 
-  {"latitude": 41.86109, "longitude": -87.66618}, 
-  {"latitude": 41.85775, "longitude": -87.66615}, 
-  {"latitude": 41.85797, "longitude": -87.65557}, 
-  {"latitude": 41.85808, "longitude": -87.64666}, 
-  {"latitude": 41.85042, "longitude": -87.64642}, 
-  {"latitude": 41.84933, "longitude": -87.64648}, 
-  {"latitude": 41.84721, "longitude": -87.64646}, 
-  {"latitude": 41.84825, "longitude": -87.64428}, 
-  {"latitude": 41.84865, "longitude": -87.64274}, 
-  {"latitude": 41.8494, "longitude": -87.64124}, 
-  {"latitude": 41.84981, "longitude": -87.6405}, 
-  {"latitude": 41.8503, "longitude": -87.6399}, 
-  {"latitude": 41.85075, "longitude": -87.63913}, 
-  {"latitude": 41.85282, "longitude": -87.63483}, 
-  {"latitude": 41.85283, "longitude": -87.63201}, 
-  {"latitude": 41.84814, "longitude": -87.63192}, 
-  {"latitude": 41.84772, "longitude": -87.63205}, 
-  {"latitude": 41.84714, "longitude": -87.63213}, 
-  {"latitude": 41.84665, "longitude": -87.63212}, 
-  {"latitude": 41.84566, "longitude": -87.63188}, 
-  {"latitude": 41.84516, "longitude": -87.63185}, 
-  {"latitude": 41.8375, "longitude": -87.63163}, 
-  {"latitude": 41.8346, "longitude": -87.6316}, 
-  {"latitude": 41.83468, "longitude": -87.62655}, 
-  {"latitude": 41.83103, "longitude": -87.62647}, 
-  {"latitude": 41.83105, "longitude": -87.62323}, 
-  {"latitude": 41.8391, "longitude": -87.62348}, 
-  {"latitude": 41.84641, "longitude": -87.6236}, 
-  {"latitude": 41.84857, "longitude": -87.62369}, 
-  {"latitude": 41.86747, "longitude": -87.62415}, 
-  {"latitude": 41.86748, "longitude": -87.6219}, 
-  {"latitude": 41.86753, "longitude": -87.62047}, 
-  {"latitude": 41.87008, "longitude": -87.62051}
+  {lat: 41.88044, lng: -87.62075}, 
+  {lat: 41.88182, lng: -87.62075}, 
+  {lat: 41.88374, lng: -87.62059}, 
+  {lat: 41.8864, lng: -87.62067}, 
+  {lat: 41.88801, lng: -87.62062}, 
+  {lat: 41.88915, lng: -87.6205}, 
+  {lat: 41.89037, lng: -87.62023}, 
+  {lat: 41.89181, lng: -87.62022}, 
+  {lat: 41.89165, lng: -87.62806}, 
+  {lat: 41.88883, lng: -87.62803}, 
+  {lat: 41.88856, lng: -87.6279}, 
+  {lat: 41.88423, lng: -87.62787}, 
+  {lat: 41.87816, lng: -87.62766}, 
+  {lat: 41.87814, lng: -87.63225}, 
+  {lat: 41.88058, lng: -87.63232}, 
+  {lat: 41.88363, lng: -87.6325}, 
+  {lat: 41.88611, lng: -87.63246}, 
+  {lat: 41.89267, lng: -87.63259}, 
+  {lat: 41.91006, lng: -87.63311}, 
+  {lat: 41.91294, lng: -87.63313}, 
+  {lat: 41.91314, lng: -87.63296}, 
+  {lat: 41.91326, lng: -87.63257}, 
+  {lat: 41.91337, lng: -87.6317}, 
+  {lat: 41.91391, lng: -87.63171}, 
+  {lat: 41.91443, lng: -87.63201}, 
+  {lat: 41.91502, lng: -87.63269}, 
+  {lat: 41.91552, lng: -87.63284}, 
+  {lat: 41.91611, lng: -87.63339}, 
+  {lat: 41.91633, lng: -87.63368}, 
+  {lat: 41.91684, lng: -87.63405}, 
+  {lat: 41.91742, lng: -87.63424}, 
+  {lat: 41.91861, lng: -87.63447}, 
+  {lat: 41.91894, lng: -87.63458}, 
+  {lat: 41.91922, lng: -87.63478}, 
+  {lat: 41.91984, lng: -87.63542}, 
+  {lat: 41.92017, lng: -87.63557}, 
+  {lat: 41.92249, lng: -87.63571}, 
+  {lat: 41.9248, lng: -87.63578}, 
+  {lat: 41.92568, lng: -87.63604}, 
+  {lat: 41.92566, lng: -87.63467}, 
+  {lat: 41.925654, lng: -87.633605}, 
+  {lat: 41.92644, lng: -87.63403}, 
+  {lat: 41.9278, lng: -87.63476}, 
+  {lat: 41.93114, lng: -87.63711}, 
+  {lat: 41.93169, lng: -87.63772}, 
+  {lat: 41.93237, lng: -87.63879}, 
+  {lat: 41.9329, lng: -87.63932}, 
+  {lat: 41.93793, lng: -87.63949}, 
+  {lat: 41.94127, lng: -87.63954}, 
+  {lat: 41.94227, lng: -87.63995}, 
+  {lat: 41.94433, lng: -87.64102}, 
+  {lat: 41.94865, lng: -87.64345}, 
+  {lat: 41.94733, lng: -87.64727}, 
+  {lat: 41.94273, lng: -87.64448}, 
+  {lat: 41.93449, lng: -87.64424}, 
+  {lat: 41.93424, lng: -87.64425}, 
+  {lat: 41.93358, lng: -87.64468}, 
+  {lat: 41.93279, lng: -87.6449}, 
+  {lat: 41.93227, lng: -87.6448}, 
+  {lat: 41.93176, lng: -87.64454}, 
+  {lat: 41.93142, lng: -87.6443}, 
+  {lat: 41.92998, lng: -87.64347}, 
+  {lat: 41.92984, lng: -87.64319}, 
+  {lat: 41.92959, lng: -87.64286}, 
+  {lat: 41.92193, lng: -87.63828}, 
+  {lat: 41.92191, lng: -87.63893}, 
+  {lat: 41.91959, lng: -87.63883}, 
+  {lat: 41.91106, lng: -87.63859}, 
+  {lat: 41.91107, lng: -87.63471}, 
+  {lat: 41.89986, lng: -87.63431}, 
+  {lat: 41.88995, lng: -87.63403}, 
+  {lat: 41.88994, lng: -87.63696}, 
+  {lat: 41.88882, lng: -87.63694}, 
+  {lat: 41.88853, lng: -87.63687}, 
+  {lat: 41.88686, lng: -87.63536}, 
+  {lat: 41.8851, lng: -87.63539}, 
+  {lat: 41.87939, lng: -87.63526}, 
+  {lat: 41.87929, lng: -87.6402}, 
+  {lat: 41.87873, lng: -87.67656}, 
+  {lat: 41.87619, lng: -87.67651}, 
+  {lat: 41.87624, lng: -87.67566}, 
+  {lat: 41.87626, lng: -87.67218}, 
+  {lat: 41.87755, lng: -87.67067}, 
+  {lat: 41.87793, lng: -87.64724}, 
+  {lat: 41.8696, lng: -87.64695}, 
+  {lat: 41.86949, lng: -87.65136}, 
+  {lat: 41.86926, lng: -87.66652}, 
+  {lat: 41.86352, lng: -87.66632}, 
+  {lat: 41.86109, lng: -87.66618}, 
+  {lat: 41.85775, lng: -87.66615}, 
+  {lat: 41.85797, lng: -87.65557}, 
+  {lat: 41.85808, lng: -87.64666}, 
+  {lat: 41.85042, lng: -87.64642}, 
+  {lat: 41.84933, lng: -87.64648}, 
+  {lat: 41.84721, lng: -87.64646}, 
+  {lat: 41.84825, lng: -87.64428}, 
+  {lat: 41.84865, lng: -87.64274}, 
+  {lat: 41.8494, lng: -87.64124}, 
+  {lat: 41.84981, lng: -87.6405}, 
+  {lat: 41.8503, lng: -87.6399}, 
+  {lat: 41.85075, lng: -87.63913}, 
+  {lat: 41.85282, lng: -87.63483}, 
+  {lat: 41.85283, lng: -87.63201}, 
+  {lat: 41.84814, lng: -87.63192}, 
+  {lat: 41.84772, lng: -87.63205}, 
+  {lat: 41.84714, lng: -87.63213}, 
+  {lat: 41.84665, lng: -87.63212}, 
+  {lat: 41.84566, lng: -87.63188}, 
+  {lat: 41.84516, lng: -87.63185}, 
+  {lat: 41.8375, lng: -87.63163}, 
+  {lat: 41.8346, lng: -87.6316}, 
+  {lat: 41.83468, lng: -87.62655}, 
+  {lat: 41.83103, lng: -87.62647}, 
+  {lat: 41.83105, lng: -87.62323}, 
+  {lat: 41.8391, lng: -87.62348}, 
+  {lat: 41.84641, lng: -87.6236}, 
+  {lat: 41.84857, lng: -87.62369}, 
+  {lat: 41.86747, lng: -87.62415}, 
+  {lat: 41.86748, lng: -87.6219}, 
+  {lat: 41.86753, lng: -87.62047}, 
+  {lat: 41.87008, lng: -87.62051}
 ];
 
 var index = 0;
-var lat = chiMarathonCoords[index].latitude;
-var lng = chiMarathonCoords[index].longitude;
+var lat = chiMarathonCoords[index].lat;
+var lng = chiMarathonCoords[index].lng;
 var map;
 var marker;
 var lineCoords = [];
 
 function initMap() {
-  console.log(params);
   var userPosition = navigator.geolocation.getCurrentPosition(success);
   var startLatLng = {lat: lat, lng: lng};
 
@@ -268,7 +267,7 @@ function initMap() {
   var markerContent = '<div id="marker-2" class="flip-container">' +
         '<div class="flipper">' +
         '<div class="front">' +
-        '<img src="http://www.summit4angelman.com/wp-content/uploads/2015/07/Chicago-Marathon.jpg">' +
+        '<img src="' + raceImage + '">' +
         '</div>' +
         '<div class="back">' +
         '<i class="fa fa-star"></i>' +
@@ -289,7 +288,7 @@ function initMap() {
     var markerContent = '<div id="marker-1" class="flip-container">' +
           '<div class="flipper">' +
           '<div class="front">' +
-          '<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Gwen_Jorgensen_winner_in_Stockholm_2013_-4.jpg/480px-Gwen_Jorgensen_winner_in_Stockholm_2013_-4.jpg">' +
+          '<img src="' + currentUserThumbnail + '">' +
           '</div>' +
           '<div class="back">' +
           '<i class="fa fa-star"></i>' +
@@ -306,6 +305,13 @@ function initMap() {
       shadow: 0
     });    
   }
+  var chiMarathonPath = new google.maps.Polyline({
+    path: chiMarathonCoords,
+    geodesic: true,
+    strokeColor: '#888888'
+  });  
+
+  chiMarathonPath.setMap(map);
 }
 
 var redraw = function() {
@@ -321,8 +327,8 @@ var redraw = function() {
 
   lineCoordinatesPath.setMap(map);
   index++;
-  lat = chiMarathonCoords[index].latitude;
-  lng = chiMarathonCoords[index].longitude;
+  lat = chiMarathonCoords[index].lat;
+  lng = chiMarathonCoords[index].lng;
 };
 
 var id = document.getElementById('map');

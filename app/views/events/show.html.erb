@@ -102,7 +102,7 @@
 </section>
 
 
-<div id="map-canvas"></div>
+
 
 <!-- LISTINGS DETAILS INFO SECTION -->
 <section class="clearfix paddingAdjustTop">
@@ -207,4 +207,6 @@
 
 <script>
 var params = { "id": "<%= params[:id] %>"};
+var currentUserThumbnail = "<%= current_user.avatar %>";
+var raceImage = "<%= @event.main_image %>";
 </script>
