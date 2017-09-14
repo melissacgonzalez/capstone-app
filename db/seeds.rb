@@ -64,8 +64,8 @@ Event.create(name: "2018 Chicago Tri - Aquabike", datetime: "2018-08-25 11:00:00
 Event.create(name: "2018 Chicago Marathon", datetime: "2018-10-06 07:00:00 GMT-0500", description: "Running the Bank of America Chicago Marathon is the pinnacle of achievement for elite athletes and everyday runners alike. On race day, runners from all 50 states and more than 100 countries will set out to accomplish a personal dream by reaching the finish line in Grant Park.", event_type: "Race", distance: "Marathon", sport_id: 2, location_id: 2, main_image: "http://www.summit4angelman.com/wp-content/uploads/2015/07/Chicago-Marathon.jpg", image2: "http://running.competitor.com/files/2016/10/Chicago-Marathon-2016.jpg", image3: "http://4.bp.blogspot.com/-m2r4-1d-d-E/Vh60iBIsimI/AAAAAAAABkA/VV-qj2Qabbk/s1600/chicago.jpg", image4: "http://www.chicagonow.com/show-me-chicago/files/2015/10/CMCourse-Map_FINAL.jpg")
 Event.create(name: "2018 Door County Triathlon - Sprint", datetime: "2018-07-21 09:00:00 GMT-0500", description: "Swim in the clear waters of Lake Michigan, bike through the rolling hills of Door County, and run through Egg Harbor and surrounding towns.  Start and Finish at Murphy County Park.  All race participants receive a free pig roast lunch and two beer tickets to the post-race party!", event_type: "Race", sport_id: 1, distance: "Sprint", location_id: 5, main_image: "http://photos.capturedoorcounty.com/photos/sVSyztDdbke7gPPqlGf8kA/showcase.jpg", image2: "http://www.doorcountytriathlon.com/wp-content/uploads/2015/01/6358-DC-Tri-2013-768x512.jpg", image3: "http://www.doorcountytriathlon.com/wp-content/uploads/2015/04/7422-DC-Tri-2013-768x512.jpg", image4: "http://www.chicagotriclub.com/resources/Pictures/Slideshow/1%20CTC%20Door%20County%202016.jpg")
 Event.create(name: "2018 Door County Triathlon - Half Ironman", datetime: "2018-07-22 09:00:00 GMT-0500", description: "Swim in the clear waters of Lake Michigan, bike through the rolling hills of Door County, and run through Egg Harbor and surrounding towns.  Start and Finish at Murphy County Park.  All race participants receive a free pig roast lunch and two beer tickets to the post-race party!", event_type: "Race", sport_id: 1, distance: "Half Ironman", location_id: 5, main_image: "http://photos.capturedoorcounty.com/photos/sVSyztDdbke7gPPqlGf8kA/showcase.jpg", image2: "http://www.doorcountytriathlon.com/wp-content/uploads/2015/01/6358-DC-Tri-2013-768x512.jpg", image3: "http://www.doorcountytriathlon.com/wp-content/uploads/2015/04/7422-DC-Tri-2013-768x512.jpg", image4: "http://www.chicagotriclub.com/resources/Pictures/Slideshow/1%20CTC%20Door%20County%202016.jpg")
+Event.create(name: "2016 Bigfoot Triathlon", datetime: "2016-06-26 06:30:00 GMT-0500", description: "The Bigfoot Triathlon and Trail Run are brought to you by RAM Racing. We're passionate about creating races that give our participants an unforgettable emotional experience from start to finish. Join the movement by running with RAM Racing.\n\n The Bigfoot Series features a 5k and 10k trail race, and an Olympic, Sprint and Relay triathlon, and all runners are encouraged to join the fun! Participants receive an award winning goodie bag, which they collect at packet pickup along with their race packet.", image2: "https://s3.amazonaws.com/assets.ramraces.com/public/www.bigfoottriathlon.com/generated/_c88a36d2a0b60671dc304ca962ba2fb8.jpg?1493672264", image3: "https://s3.amazonaws.com/assets.ramraces.com/public/www.bigfoottriathlon.com/generated/_86b5a4145d87b301c90d23934af0031a.jpg?1493672601", image4: "https://s3.amazonaws.com/assets.ramraces.com/public/www.bigfoottriathlon.com/generated/_68cf4e66ec5a9d4ccda95310d210fa67.jpg?1493672619", main_image: "https://s3.amazonaws.com/assets.ramraces.com/public/www.bigfoottriathlon.com/generated/_bd3267d818a4ebcb3c7193ae27c3ea2d.jpg?1493672302", event_type: "Race", sport_id: 1, distance: "Olympic", location_id: 6)
 Event.create(name: "2017 Bigfoot Triathlon", datetime: "2017-06-25 06:30:00 GMT-0500", description: "The Bigfoot Triathlon and Trail Run are brought to you by RAM Racing. We're passionate about creating races that give our participants an unforgettable emotional experience from start to finish. Join the movement by running with RAM Racing.\n\n The Bigfoot Series features a 5k and 10k trail race, and an Olympic, Sprint and Relay triathlon, and all runners are encouraged to join the fun! Participants receive an award winning goodie bag, which they collect at packet pickup along with their race packet.", image2: "https://s3.amazonaws.com/assets.ramraces.com/public/www.bigfoottriathlon.com/generated/_c88a36d2a0b60671dc304ca962ba2fb8.jpg?1493672264", image3: "https://s3.amazonaws.com/assets.ramraces.com/public/www.bigfoottriathlon.com/generated/_86b5a4145d87b301c90d23934af0031a.jpg?1493672601", image4: "https://s3.amazonaws.com/assets.ramraces.com/public/www.bigfoottriathlon.com/generated/_68cf4e66ec5a9d4ccda95310d210fa67.jpg?1493672619", main_image: "https://s3.amazonaws.com/assets.ramraces.com/public/www.bigfoottriathlon.com/generated/_bd3267d818a4ebcb3c7193ae27c3ea2d.jpg?1493672302", event_type: "Race", sport_id: 1, distance: "Olympic", location_id: 6)
-Event.create(name: "2011 Bigfoot Triathlon", datetime: "2011-06-26 06:30:00 GMT-0500", description: "The Bigfoot Triathlon and Trail Run are brought to you by RAM Racing. We're passionate about creating races that give our participants an unforgettable emotional experience from start to finish. Join the movement by running with RAM Racing.\n\n The Bigfoot Series features a 5k and 10k trail race, and an Olympic, Sprint and Relay triathlon, and all runners are encouraged to join the fun! Participants receive an award winning goodie bag, which they collect at packet pickup along with their race packet.", image2: "https://s3.amazonaws.com/assets.ramraces.com/public/www.bigfoottriathlon.com/generated/_c88a36d2a0b60671dc304ca962ba2fb8.jpg?1493672264", image3: "https://s3.amazonaws.com/assets.ramraces.com/public/www.bigfoottriathlon.com/generated/_86b5a4145d87b301c90d23934af0031a.jpg?1493672601", image4: "https://s3.amazonaws.com/assets.ramraces.com/public/www.bigfoottriathlon.com/generated/_68cf4e66ec5a9d4ccda95310d210fa67.jpg?1493672619", main_image: "https://s3.amazonaws.com/assets.ramraces.com/public/www.bigfoottriathlon.com/generated/_bd3267d818a4ebcb3c7193ae27c3ea2d.jpg?1493672302", event_type: "Race", sport_id: 1, distance: "Olympic", location_id: 6)
 Event.create(name: "2018 Bigfoot Triathlon", datetime: "2018-06-24 06:30:00 GMT-0500", description: "The Bigfoot Triathlon and Trail Run are brought to you by RAM Racing. We're passionate about creating races that give our participants an unforgettable emotional experience from start to finish. Join the movement by running with RAM Racing.\n\n The Bigfoot Series features a 5k and 10k trail race, and an Olympic, Sprint and Relay triathlon, and all runners are encouraged to join the fun! Participants receive an award winning goodie bag, which they collect at packet pickup along with their race packet.", image2: "https://s3.amazonaws.com/assets.ramraces.com/public/www.bigfoottriathlon.com/generated/_c88a36d2a0b60671dc304ca962ba2fb8.jpg?1493672264", image3: "https://s3.amazonaws.com/assets.ramraces.com/public/www.bigfoottriathlon.com/generated/_86b5a4145d87b301c90d23934af0031a.jpg?1493672601", image4: "https://s3.amazonaws.com/assets.ramraces.com/public/www.bigfoottriathlon.com/generated/_68cf4e66ec5a9d4ccda95310d210fa67.jpg?1493672619", main_image: "https://s3.amazonaws.com/assets.ramraces.com/public/www.bigfoottriathlon.com/generated/_bd3267d818a4ebcb3c7193ae27c3ea2d.jpg?1493672302", event_type: "Race", sport_id: 1, distance: "Olympic", location_id: 6)
 
 itu_api_events = Unirest.get("https://api.triathlon.org/v1/events?per_page=600&start_date=2015-09-14&end_date=2019-09-14&region_id=11", headers:{ "apikey" => ENV["TRIATHLON_ORG_API_KEY"] }).body["data"]
@@ -108,11 +108,14 @@ itu_api_events.each do |itu_api_event|
     headers:{ "apikey" => ENV["TRIATHLON_ORG_API_KEY"] }
     ).body["data"]
   if images.length < 4
-    images = [
-      {"thumbnail" => "http://app.resrc.it/S=W800/o=90/http://www.triathlon.org/uploads/webgalleries/90168/150917-chicago-u23-web-msj-15.jpg"}, 
-      {"thumbnail" => "http://www.ironman.com/~/media/f0b6857b035c4ec0ba2f038f05664a05/2015%20carousel%20ituabudhabi.jpg"},
-      {"thumbnail" => "http://www.triathlon.org/images/galleries/DEL_64011.JPG"},
-      {"thumbnail" => "http://cdn.triathlete.com/wp-content/uploads/2015/09/CHIITU15-1143.jpg"}
+    chi_images = Unirest.get("https://api.triathlon.org/v1/events/90168/hr_images?per_page=500", 
+    headers:{ "apikey" => ENV["TRIATHLON_ORG_API_KEY"] }
+    ).body["data"]
+    images = [ 
+      {"thumbnail" => chi_images[rand(0..496)]["thumbnail"]}, 
+      {"thumbnail" => chi_images[rand(0..496)]["thumbnail"]}, 
+      {"thumbnail" => chi_images[rand(0..496)]["thumbnail"]}, 
+      {"thumbnail" => chi_images[rand(0..496)]["thumbnail"]} 
     ]
   end
 
@@ -143,10 +146,11 @@ Registration.create(user_id: 3, event_id: 4, status: "Volunteering", comment: "I
 Registration.create(user_id: 3, event_id: 5, status: "I'm coming!")
 Registration.create(user_id: 4, event_id: 7, status: "Registered")
 Registration.create(user_id: 2, event_id: 8, status: "Registered")
-Registration.create(user_id: 6, event_id: 22, status: "Registered")
-Registration.create(user_id: 6, event_id: 8, status: "Registered")
+Registration.create(user_id: 6, event_id: 21, status: "Registered")
+Registration.create(user_id: 6, event_id: 20, status: "Registered")
 Registration.create(user_id: 6, event_id: 14, status: "Registered")
 Registration.create(user_id: 6, event_id: 12, status: "Registered")
+Registration.create(user_id: 6, event_id: 22, status: "Volunteering")
 
 1000.times do
   user = User.find_by(id: rand(7..55))
@@ -166,23 +170,29 @@ end
 
 Report.create(user_id: 4, registration_id: 8, title: "Fast and Fun Race!", body: "What a cute little race!  The transition area was well-organized, and each racer had an assigned rack position.  Everything was clearly marked, so it was quite easy to find your place.  The race start was also well done-- there were plenty of porta-potties near the start and the announcements could be clearly heard.  I was in the first wave, so didn't have to wait too long for my race to start.  The swim course was very well marked with huge orange buoys, so it was nearly impossible to go off course.  They also had kayakers stationed frequently throughout the course, ready to react in case of emergency.  The bike course was super fun-- lots of hills and very well marked.  The aid stations we were marked and volunteers were clearly knowledgeable in how to do the bike hand-offs.  The run course was also very hilly and not very well shaded, so it got quite hot.  But since I was in the first place, I was done well before the sun got super hot.  They had BBQ pulled pork and beer and the post-race party, which was a bit of a disappointment since I thought there would be a pig roast.  But I guess they're doing the roast tomorrow for the Half Ironman.  All in all, great experience!", bib_number: 3, overall_rating: 5, swag_rating: 4, post_party_rating: 4, packet_pickup_rating: 5, race_support_rating: 5)
 Report.create(user_id: 2, registration_id: 9, title: "Nice Half Ironman!  Will definitely do again!", body: "What a cute little race!  The transition area was well-organized, and each racer had an assigned rack position.  Everything was clearly marked, so it was quite easy to find your place.  The race start was also well done-- there were plenty of porta-potties near the start and the announcements could be clearly heard.  I was in the first wave, so didn't have to wait too long for my race to start.  The swim course was very well marked with huge orange buoys, so it was nearly impossible to go off course.  They also had kayakers stationed frequently throughout the course, ready to react in case of emergency.  The bike course was super fun-- lots of hills and very well marked.  The aid stations we were marked and volunteers were clearly knowledgeable in how to do the bike hand-offs.  The run course was also very hilly and not very well shaded, so it got quite hot.  But since I was in the first place, I was done well before the sun got super hot.  The post race party was tons of fun and included a pig roast and beer.  It was nice to have stuff going on at the finish line so my friends and family had something to do while I was still racing.  All in all, great experience!", bib_number: 6, overall_rating: 5, swag_rating: 4, post_party_rating: 5, packet_pickup_rating: 4, race_support_rating: 5)
+Report.create(user_id: 6, registration_id: 10, title: "Cute Race!", body: "Lake Geneva is a beautiful venue, and I loved the trail run!  I was worried about getting lost since the course wasn't marked all that well and I didn't see too many volunteers especially on the bike.  But luckily I was able to stay with a group of other racers so didn't have to worry about getting lost.", bib_number: 256, overall_rating: 4, swag_rating: 4, post_party_rating: 3, packet_pickup_rating: 4, race_support_rating: 3)
+Report.create(user_id: 6, registration_id: 12, title: "The Best Race Ever!", body: "What a cute little race!  The transition area was well-organized, and each racer had an assigned rack position.  Everything was clearly marked, so it was quite easy to find your place.  The race start was also well done-- there were plenty of porta-potties near the start and the announcements could be clearly heard.  I was in the first wave, so didn't have to wait too long for my race to start.  The swim course was very well marked with huge orange buoys, so it was nearly impossible to go off course.  They also had kayakers stationed frequently throughout the course, ready to react in case of emergency.  The bike course was super fun-- lots of hills and very well marked.  The aid stations we were marked and volunteers were clearly knowledgeable in how to do the bike hand-offs.  The run course was also very hilly and not very well shaded, so it got quite hot.  But since I was in the first place, I was done well before the sun got super hot.  The post race party was tons of fun and included a pig roast and beer.  It was nice to have stuff going on at the finish line so my friends and family had something to do while I was still racing.  All in all, great experience!", bib_number: 351, overall_rating: 5, swag_rating: 4, post_party_rating: 5, packet_pickup_rating: 4, race_support_rating: 5)
+Report.create(user_id: 6, registration_id: 13, title: "Nice Hometown Race!", body: "This is definitely a must-do race if you're from Chicago!  You get to run through the various neighborhoods, and there's so much energy along the way.  I had friends and family cheering for me every few miles.  Since the course loops around the various neighborhoods, people can come and see me pass by multiple times at various stages in the race.  It's definitely motivating and uplifting to see loved ones so many times!  Race support was very organized including at the start line, aid stations, and finish area.  I'd definitely do this race again!", bib_number: 10479, overall_rating: 5, swag_rating: 4, post_party_rating: 5, packet_pickup_rating: 4, race_support_rating: 5)
+Report.create(user_id: 6, registration_id: 14, title: "Terrible & Dangerous Race", body: "This is the worst race I've ever witnessed.  I saw 3 bike crashes due to poor signage, and there weren't even enough porta potties at the start line.", bib_number: 'volunteer', overall_rating: 1)
 
 
 registrations = Registration.joins(:event).where('events.datetime < ?', Time.now)
 
 registrations.each do |registration|
-  Report.create(
-    user_id: registration.user_id,
-    registration_id: registration.id,
-    title: Faker::Lorem.sentence,
-    body: Faker::Lorem.paragraph(10), 
-    bib_number: rand(1..1000),
-    overall_rating: rand(3..5), 
-    swag_rating: rand(3..5), 
-    post_party_rating: rand(2..5), 
-    packet_pickup_rating: rand(2..5), 
-    race_support_rating: rand(1..5)
-    )
+  if !Report.find_by(registration_id: registration.id)
+    Report.create(
+      user_id: registration.user_id,
+      registration_id: registration.id,
+      title: Faker::Lorem.sentence,
+      body: Faker::Lorem.paragraph(10), 
+      bib_number: rand(1..1000),
+      overall_rating: rand(3..5), 
+      swag_rating: rand(3..5), 
+      post_party_rating: rand(2..5), 
+      packet_pickup_rating: rand(2..5), 
+      race_support_rating: rand(1..5)
+      )
+  end
 end
 
 

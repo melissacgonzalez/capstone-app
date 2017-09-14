@@ -25,10 +25,15 @@
             <% @itu_results.each do |result| %>
               <div class="contactInfo">
               <h4><%= result["event_title"] %></h4>
+                <p>Place: <%= result["position"] %><br>
+                Total Time: <%= result["total_time"] %><br>
+                Splits: </p>
                 <ul class="list-unstyled list-address">
-                  <li>Place: <%= result["position"] %></li>
-                  <li>Total Time: <%= result["total_time"] %></li>
-                  <li>Splits: <%= result["splits"] %></li>
+                  <li>Swim: <%= result["splits"][0] %><br>
+                  T1: <%= result["splits"][1] %><br>
+                  Bike: <%= result["splits"][2] %><br>
+                  T2: <%= result["splits"][3] %><br>
+                  Run: <%= result["splits"][4] %></li>
                 </ul>
               </div>
             <% end %>
@@ -57,7 +62,7 @@
           <% if @user.reports != [] %>
             <div class="detailsInfoBox">
               <h3>My Race Reports</h3>
-              <% @user.reports.each do |report| %>
+              <% @user.reports.order(id: :desc).each do |report| %>
                 <div class="media media-comment">
                   <div class="media-left">
                   <img src="<%= @user.avatar %>" class="media-object img-circle" alt="Image User">
