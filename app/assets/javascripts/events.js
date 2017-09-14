@@ -247,7 +247,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
               '<div id="iw-container" style="background-image: url(' + marker.data.thumbnail + ');">' +
               '<div class="iw-content">' +
               starsCode +
-              '<div class="iw-subTitle">' + marker.data.title + '</div>' +
+              '<div class="iw-subTitle"><a href="/events/' + marker.data.id + '">' + marker.data.title + '</a></div>' +
               '<p>' + marker.data.address + '</p>' +
               '</div>' +
               '<div class="iw-bottom-gradient"></div>' +
