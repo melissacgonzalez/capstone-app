@@ -254,7 +254,7 @@ var marker;
 var lineCoords = [];
 
 function initMap() {
-  var userPosition = navigator.geolocation.getCurrentPosition(success);
+  var userPosition = navigator.geolocation.getCurrentPosition(success, failure);
   var startLatLng = {lat: lat, lng: lng};
 
   map = new google.maps.Map(document.getElementById('map'), {
@@ -310,6 +310,10 @@ function initMap() {
     geodesic: true,
     strokeColor: '#888888'
   });  
+
+  function failure() {
+    console.log("GeoLocation Failed");
+  }
 
   chiMarathonPath.setMap(map);
 
@@ -369,18 +373,7 @@ function initMap() {
       });
 
       searchMarkers.push(searchMarker);
-
-      // if (place.geometry.viewport) {
-      //   // Only geocodes have viewport.
-      //   bounds.union(place.geometry.viewport);
-      // } else {
-      //   bounds.extend(place.geometry.location);
-      // }
-
-
-
     });
-    // map.fitBounds(bounds);
   });
 
 
